@@ -1,0 +1,1250 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Understanding Data &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'PendatE_DataUnderstanding_23_030';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Hi! Selamat Datang di Penambangan Data
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FPendatE_DataUnderstanding_23_030.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/PendatE_DataUnderstanding_23_030.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Understanding Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-package-untuk-mysql-dan-posgresql">Install Package untuk MySQL dan PosgreSQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-database-mysql-dan-posgresql-melalui-dari-aiven-io">Koneksi ke Database Mysql dan PosgreSQL melalui dari aiven.io</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-posgresql-dan-menampilkan-datanya">Koneksi ke PosgreSQL dan menampilkan datanya</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-mysql-dan-menampilkan-datanya">Koneksi ke MySQL dan menampilkan datanya</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-data">Sampling data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-data">Profiling Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menarik-data-base-dari-posgresql-dan-mysql-menjadi-1-tabel-sekaligus-mengecek-apakah-terdapat-mising-value-dan-ketidak-konsistenan-ketika-data-digabungkan">Menarik data base dari PosgreSql dan Mysql menjadi 1 tabel sekaligus mengecek apakah terdapat mising value dan ketidak konsistenan ketika data digabungkan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">Visualisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-dan-asosiasi">Korelasi dan Asosiasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">Eksplorasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indentifikasi-masalah-data">Indentifikasi Masalah Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validasi-data">Validasi data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="understanding-data">
+<h1>Understanding Data<a class="headerlink" href="#understanding-data" title="Link to this heading">#</a></h1>
+<p><strong>Understanding Data</strong> adalah proses memahami, menganalisis, dan menginterpretasikan data agar dapat digunakan secara efektif dalam pengambilan keputusan. Proses ini mencakup pengumpulan data dari berbagai sumber, pembersihan data untuk menghapus ketidakkonsistenan, analisis data dengan teknik statistik atau visualisasi untuk menemukan pola, serta interpretasi hasil guna mendukung keputusan yang lebih baik. Selain itu, komunikasi data melalui grafik, laporan, atau dashboard juga penting agar wawasan yang diperoleh dapat dipahami oleh pemangku kepentingan. Memahami data sangat krusial dalam berbagai bidang, termasuk teknik, bisnis, sains, dan kecerdasan buatan.</p>
+<section id="pengumpulan-data">
+<h2>Pengumpulan Data<a class="headerlink" href="#pengumpulan-data" title="Link to this heading">#</a></h2>
+<p>Kami telah melakukan proses pengumpulan data dan menyimpannya di <a class="reference external" href="http://Aiven.io">Aiven.io</a>, yang digunakan sebagai sumber data dari berbagai database. Dalam tahap ini, sangat penting untuk memastikan bahwa data yang dikumpulkan sesuai dengan tujuan analisis dan memiliki relevansi yang tinggi.</p>
+</section>
+<section id="install-package-untuk-mysql-dan-posgresql">
+<h2>Install Package untuk MySQL dan PosgreSQL<a class="headerlink" href="#install-package-untuk-mysql-dan-posgresql" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pymysql
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pymysql
+  Downloading PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
+Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pymysql
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed pymysql-1.1.1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.0.1</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>psycopg2-binary
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting psycopg2-binary
+  Downloading psycopg2_binary-2.9.10-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading psycopg2_binary-2.9.10-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+?25l   <span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">40.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: psycopg2-binary
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed psycopg2-binary-2.9.10
+
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.0.1</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w"> </span>tabulate
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas in /home/codespace/.local/lib/python3.12/site-packages (2.2.3)
+Requirement already satisfied: tabulate in /usr/local/python/3.12.1/lib/python3.12/site-packages (0.9.0)
+Requirement already satisfied: numpy&gt;=1.26.0 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.2.0)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2024.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2024.2)
+Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.0.1</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="koneksi-ke-database-mysql-dan-posgresql-melalui-dari-aiven-io">
+<h2>Koneksi ke Database Mysql dan PosgreSQL melalui dari <a class="reference external" href="http://aiven.io">aiven.io</a><a class="headerlink" href="#koneksi-ke-database-mysql-dan-posgresql-melalui-dari-aiven-io" title="Link to this heading">#</a></h2>
+<section id="koneksi-ke-posgresql-dan-menampilkan-datanya">
+<h3>Koneksi ke PosgreSQL dan menampilkan datanya<a class="headerlink" href="#koneksi-ke-posgresql-dan-menampilkan-datanya" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># Koneksi ke database PostgreSQL</span>
+<span class="n">PG_HOST</span> <span class="o">=</span> <span class="s2">&quot;posgesqlpendata23-175-posgresqlpendata23-175.h.aivencloud.com&quot;</span>
+<span class="n">PG_PORT</span> <span class="o">=</span> <span class="s2">&quot;17047&quot;</span>
+<span class="n">PG_NAME</span> <span class="o">=</span> <span class="s2">&quot;defaultdb&quot;</span>
+<span class="n">PG_USER</span> <span class="o">=</span> <span class="s2">&quot;avnadmin&quot;</span>
+<span class="n">PG_PASS</span> <span class="o">=</span> <span class="s2">&quot;AVNS_XfGwRG6_6e5BdqZXovg&quot;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Membuat koneksi</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="n">PG_HOST</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="n">PG_PORT</span><span class="p">,</span>
+        <span class="n">dbname</span><span class="o">=</span><span class="n">PG_NAME</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">PG_USER</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">PG_PASS</span><span class="p">,</span>
+        <span class="n">sslmode</span><span class="o">=</span><span class="s2">&quot;require&quot;</span>
+    <span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="c1"># Menjalankan query</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM irisposgre.posgre;&quot;</span><span class="p">)</span>  <span class="c1"># Ganti dengan nama skema &amp; tabel yang benar</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+    <span class="c1"># Mengambil nama kolom</span>
+    <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+
+    <span class="c1"># Menampilkan hasil dalam bentuk tabel</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;keys&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;psql&quot;</span><span class="p">))</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># Menutup koneksi</span>
+    <span class="k">if</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-----+------+-----------------+----------------+---------------+
+|     |   id | Class           |   sepal length |   sepal width |
+|-----+------+-----------------+----------------+---------------|
+|   0 |    2 | Iris-setosa     |            4.9 |           3   |
+|   1 |    3 | Iris-setosa     |            4.7 |           3.2 |
+|   2 |    4 | Iris-setosa     |            4.6 |           3.1 |
+|   3 |    5 | Iris-setosa     |            5   |           3.6 |
+|   4 |    6 | Iris-setosa     |            5.4 |           3.9 |
+|   5 |    7 | Iris-setosa     |            4.6 |           3.4 |
+|   6 |    8 | Iris-setosa     |            5   |           3.4 |
+|   7 |    9 | Iris-setosa     |            4.4 |           2.9 |
+|   8 |   10 | Iris-setosa     |            4.9 |           3.1 |
+|   9 |   11 | Iris-setosa     |            5.4 |           3.7 |
+|  10 |   12 | Iris-setosa     |            4.8 |           3.4 |
+|  11 |   13 | Iris-setosa     |            4.8 |           3   |
+|  12 |   14 | Iris-setosa     |            4.3 |           3   |
+|  13 |   15 | Iris-setosa     |            5.8 |           4   |
+|  14 |   16 | Iris-setosa     |            5.7 |           4.4 |
+|  15 |   17 | Iris-setosa     |            5.4 |           3.9 |
+|  16 |   18 | Iris-setosa     |            5.1 |           3.5 |
+|  17 |   19 | Iris-setosa     |            5.7 |           3.8 |
+|  18 |   20 | Iris-setosa     |            5.1 |           3.8 |
+|  19 |   21 | Iris-setosa     |            5.4 |           3.4 |
+|  20 |   22 | Iris-setosa     |            5.1 |           3.7 |
+|  21 |   23 | Iris-setosa     |            4.6 |           3.6 |
+|  22 |   24 | Iris-setosa     |            5.1 |           3.3 |
+|  23 |   25 | Iris-setosa     |            4.8 |           3.4 |
+|  24 |   26 | Iris-setosa     |            5   |           3   |
+|  25 |   27 | Iris-setosa     |            5   |           3.4 |
+|  26 |   28 | Iris-setosa     |            5.2 |           3.5 |
+|  27 |   29 | Iris-setosa     |            5.2 |           3.4 |
+|  28 |   30 | Iris-setosa     |            4.7 |           3.2 |
+|  29 |   31 | Iris-setosa     |            4.8 |           3.1 |
+|  30 |   32 | Iris-setosa     |            5.4 |           3.4 |
+|  31 |   33 | Iris-setosa     |            5.2 |           4.1 |
+|  32 |   34 | Iris-setosa     |            5.5 |           4.2 |
+|  33 |   35 | Iris-setosa     |            4.9 |           3.1 |
+|  34 |   36 | Iris-setosa     |            5   |           3.2 |
+|  35 |   37 | Iris-setosa     |            5.5 |           3.5 |
+|  36 |   38 | Iris-setosa     |            4.9 |           3.1 |
+|  37 |   39 | Iris-setosa     |            4.4 |           3   |
+|  38 |   40 | Iris-setosa     |            5.1 |           3.4 |
+|  39 |   41 | Iris-setosa     |            5   |           3.5 |
+|  40 |   42 | Iris-setosa     |            4.5 |           2.3 |
+|  41 |   43 | Iris-setosa     |            4.4 |           3.2 |
+|  42 |   44 | Iris-setosa     |            5   |           3.5 |
+|  43 |   45 | Iris-setosa     |            5.1 |           3.8 |
+|  44 |   46 | Iris-setosa     |            4.8 |           3   |
+|  45 |   47 | Iris-setosa     |            5.1 |           3.8 |
+|  46 |   48 | Iris-setosa     |            4.6 |           3.2 |
+|  47 |   49 | Iris-setosa     |            5.3 |           3.7 |
+|  48 |   50 | Iris-setosa     |            5   |           3.3 |
+|  49 |   51 | Iris-versicolor |            7   |           3.2 |
+|  50 |   52 | Iris-versicolor |            6.4 |           3.2 |
+|  51 |   53 | Iris-versicolor |            6.9 |           3.1 |
+|  52 |   54 | Iris-versicolor |            5.5 |           2.3 |
+|  53 |   55 | Iris-versicolor |            6.5 |           2.8 |
+|  54 |   56 | Iris-versicolor |            5.7 |           2.8 |
+|  55 |   57 | Iris-versicolor |            6.3 |           3.3 |
+|  56 |   58 | Iris-versicolor |            4.9 |           2.4 |
+|  57 |   59 | Iris-versicolor |            6.6 |           2.9 |
+|  58 |   60 | Iris-versicolor |            5.2 |           2.7 |
+|  59 |   61 | Iris-versicolor |            5   |           2   |
+|  60 |   62 | Iris-versicolor |            5.9 |           3   |
+|  61 |   63 | Iris-versicolor |            6   |           2.2 |
+|  62 |   64 | Iris-versicolor |            6.1 |           2.9 |
+|  63 |   65 | Iris-versicolor |            5.6 |           2.9 |
+|  64 |   66 | Iris-versicolor |            6.7 |           3.1 |
+|  65 |   67 | Iris-versicolor |            5.6 |           3   |
+|  66 |   68 | Iris-versicolor |            5.8 |           2.7 |
+|  67 |   69 | Iris-versicolor |            6.2 |           2.2 |
+|  68 |   70 | Iris-versicolor |            5.6 |           2.5 |
+|  69 |   71 | Iris-versicolor |            5.9 |           3.2 |
+|  70 |   72 | Iris-versicolor |            6.1 |           2.8 |
+|  71 |   73 | Iris-versicolor |            6.3 |           2.5 |
+|  72 |   74 | Iris-versicolor |            6.1 |           2.8 |
+|  73 |   75 | Iris-versicolor |            6.4 |           2.9 |
+|  74 |   76 | Iris-versicolor |            6.6 |           3   |
+|  75 |   77 | Iris-versicolor |            6.8 |           2.8 |
+|  76 |   78 | Iris-versicolor |            6.7 |           3   |
+|  77 |   79 | Iris-versicolor |            6   |           2.9 |
+|  78 |   80 | Iris-versicolor |            5.7 |           2.6 |
+|  79 |   81 | Iris-versicolor |            5.5 |           2.4 |
+|  80 |   82 | Iris-versicolor |            5.5 |           2.4 |
+|  81 |   83 | Iris-versicolor |            5.8 |           2.7 |
+|  82 |   84 | Iris-versicolor |            6   |           2.7 |
+|  83 |   85 | Iris-versicolor |            5.4 |           3   |
+|  84 |   86 | Iris-versicolor |            6   |           3.4 |
+|  85 |   87 | Iris-versicolor |            6.7 |           3.1 |
+|  86 |   88 | Iris-versicolor |            6.3 |           2.3 |
+|  87 |   89 | Iris-versicolor |            5.6 |           3   |
+|  88 |   90 | Iris-versicolor |            5.5 |           2.5 |
+|  89 |   91 | Iris-versicolor |            5.5 |           2.6 |
+|  90 |   92 | Iris-versicolor |            6.1 |           3   |
+|  91 |   93 | Iris-versicolor |            5.8 |           2.6 |
+|  92 |   94 | Iris-versicolor |            5   |           2.3 |
+|  93 |   95 | Iris-versicolor |            5.6 |           2.7 |
+|  94 |   96 | Iris-versicolor |            5.7 |           3   |
+|  95 |   97 | Iris-versicolor |            5.7 |           2.9 |
+|  96 |   98 | Iris-versicolor |            6.2 |           2.9 |
+|  97 |   99 | Iris-versicolor |            5.1 |           2.5 |
+|  98 |  100 | Iris-versicolor |            5.7 |           2.8 |
+|  99 |  101 | Iris-virginica  |            6.3 |           3.3 |
+| 100 |  102 | Iris-virginica  |            5.8 |           2.7 |
+| 101 |  103 | Iris-virginica  |            7.1 |           3   |
+| 102 |  104 | Iris-virginica  |            6.3 |           2.9 |
+| 103 |  105 | Iris-virginica  |            6.5 |           3   |
+| 104 |  106 | Iris-virginica  |            7.6 |           3   |
+| 105 |  107 | Iris-virginica  |            4.9 |           2.5 |
+| 106 |  108 | Iris-virginica  |            7.3 |           2.9 |
+| 107 |  109 | Iris-virginica  |            6.7 |           2.5 |
+| 108 |  110 | Iris-virginica  |            7.2 |           3.6 |
+| 109 |  111 | Iris-virginica  |            6.5 |           3.2 |
+| 110 |  112 | Iris-virginica  |            6.4 |           2.7 |
+| 111 |  113 | Iris-virginica  |            6.8 |           3   |
+| 112 |  114 | Iris-virginica  |            5.7 |           2.5 |
+| 113 |  115 | Iris-virginica  |            5.8 |           2.8 |
+| 114 |  116 | Iris-virginica  |            6.4 |           3.2 |
+| 115 |  117 | Iris-virginica  |            6.5 |           3   |
+| 116 |  118 | Iris-virginica  |            7.7 |           3.8 |
+| 117 |  119 | Iris-virginica  |            7.7 |           2.6 |
+| 118 |  120 | Iris-virginica  |            6   |           2.2 |
+| 119 |  121 | Iris-virginica  |            6.9 |           3.2 |
+| 120 |  122 | Iris-virginica  |            5.6 |           2.8 |
+| 121 |  123 | Iris-virginica  |            7.7 |           2.8 |
+| 122 |  124 | Iris-virginica  |            6.3 |           2.7 |
+| 123 |  125 | Iris-virginica  |            6.7 |           3.3 |
+| 124 |  126 | Iris-virginica  |            7.2 |           3.2 |
+| 125 |  127 | Iris-virginica  |            6.2 |           2.8 |
+| 126 |  128 | Iris-virginica  |            6.1 |           3   |
+| 127 |  129 | Iris-virginica  |            6.4 |           2.8 |
+| 128 |  130 | Iris-virginica  |            7.2 |           3   |
+| 129 |  131 | Iris-virginica  |            7.4 |           2.8 |
+| 130 |  132 | Iris-virginica  |            7.9 |           3.8 |
+| 131 |  133 | Iris-virginica  |            6.4 |           2.8 |
+| 132 |  134 | Iris-virginica  |            6.3 |           2.8 |
+| 133 |  135 | Iris-virginica  |            6.1 |           2.6 |
+| 134 |  136 | Iris-virginica  |            7.7 |           3   |
+| 135 |  137 | Iris-virginica  |            6.3 |           3.4 |
+| 136 |  138 | Iris-virginica  |            6.4 |           3.1 |
+| 137 |  139 | Iris-virginica  |            6   |           3   |
+| 138 |  140 | Iris-virginica  |            6.9 |           3.1 |
+| 139 |  141 | Iris-virginica  |            6.7 |           3.1 |
+| 140 |  142 | Iris-virginica  |            6.9 |           3.1 |
+| 141 |  143 | Iris-virginica  |            5.8 |           2.7 |
+| 142 |  144 | Iris-virginica  |            6.8 |           3.2 |
+| 143 |  145 | Iris-virginica  |            6.7 |           3.3 |
+| 144 |  146 | Iris-virginica  |            6.7 |           3   |
+| 145 |  147 | Iris-virginica  |            6.3 |           2.5 |
+| 146 |  148 | Iris-virginica  |            6.5 |           3   |
+| 147 |  149 | Iris-virginica  |            6.2 |           3.4 |
+| 148 |  150 | Iris-virginica  |            5.9 |           3   |
+| 149 |    1 | Iris-setosa     |           20.1 |          30.5 |
++-----+------+-----------------+----------------+---------------+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="koneksi-ke-mysql-dan-menampilkan-datanya">
+<h3>Koneksi ke MySQL dan menampilkan datanya<a class="headerlink" href="#koneksi-ke-mysql-dan-menampilkan-datanya" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># Konfigurasi koneksi ke database MySQL</span>
+<span class="n">DB_HOST</span> <span class="o">=</span> <span class="s2">&quot;mysql-pendata23-175-mysqlpendata23-175.g.aivencloud.com&quot;</span>
+<span class="n">DB_PORT</span> <span class="o">=</span> <span class="mi">17974</span>
+<span class="n">DB_NAME</span> <span class="o">=</span> <span class="s2">&quot;defaultdb&quot;</span>
+<span class="n">DB_USER</span> <span class="o">=</span> <span class="s2">&quot;avnadmin&quot;</span>
+<span class="n">DB_PASS</span> <span class="o">=</span> <span class="s2">&quot;AVNS_756YWhIqpe1WzSKsGNx&quot;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Membuat koneksi ke MySQL</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="n">DB_HOST</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="n">DB_PORT</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">DB_USER</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">DB_PASS</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="n">DB_NAME</span><span class="p">,</span>
+        <span class="n">cursorclass</span><span class="o">=</span><span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">DictCursor</span>  <span class="c1"># Mengembalikan hasil sebagai dictionary</span>
+    <span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="c1"># Menjalankan query SQL</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM irismysql.flowers;&quot;</span>  <span class="c1"># Sesuaikan dengan nama tabel</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+    <span class="c1"># Jika tabel kosong</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tabel kosong, tidak ada data untuk ditampilkan.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Mengubah hasil query menjadi DataFrame pandas</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+
+        <span class="c1"># Menampilkan 3 data awal, titik-titik di tengah, dan 3 data akhir</span>
+        <span class="n">df_selected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">&quot;...&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)],</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)])</span>
+
+        <span class="c1"># Menampilkan tabel dengan format psql</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df_selected</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;keys&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;psql&quot;</span><span class="p">,</span> <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># Menutup koneksi ke database</span>
+    <span class="k">if</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+----------------+----------------+---------------+
+| id   | class          | petal length   | petal width   |
+|------+----------------+----------------+---------------|
+| 1    | Iris-setosa    | 86.4           | 70.0          |
+| 2    | Iris-setosa    | 1.4            | 0.2           |
+| 3    | Iris-setosa    | 1.3            | 0.2           |
+| ...  | ...            | ...            | ...           |
+| 148  | Iris-virginica | 5.2            | 2.0           |
+| 149  | Iris-virginica | 5.4            | 2.3           |
+| 150  | Iris-virginica | 5.1            | 1.8           |
++------+----------------+----------------+---------------+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sampling-data">
+<h2>Sampling data<a class="headerlink" href="#sampling-data" title="Link to this heading">#</a></h2>
+<p>Sampling data digunakan untuk menganalisis sebagian data tanpa perlu memproses seluruh dataset. Pada tahap ini, data dikelompokkan berdasarkan kelasnya dengan warna yang berbeda, yaitu Iris-setosa berwarna biru, Iris-versicolor berwarna merah, dan Iris-virginica berwarna hijau. Pengelompokan ini bertujuan untuk mempermudah visualisasi dan analisis data.</p>
+</section>
+<section id="profiling-data">
+<h2>Profiling Data<a class="headerlink" href="#profiling-data" title="Link to this heading">#</a></h2>
+<p>Profiling data adalah proses merangkum setiap variabel dalam dataset, termasuk jenis data yang digunakan. Proses ini juga mencakup pemeriksaan, pemahaman, dan analisis terhadap struktur serta kualitas data untuk memastikan data siap digunakan dalam analisis lebih lanjut.s struktur serta kualitas data sebelum digunakan dalam analisis lebih lanjut.</p>
+<section id="menarik-data-base-dari-posgresql-dan-mysql-menjadi-1-tabel-sekaligus-mengecek-apakah-terdapat-mising-value-dan-ketidak-konsistenan-ketika-data-digabungkan">
+<h3>Menarik data base dari PosgreSql dan Mysql menjadi 1 tabel sekaligus mengecek apakah terdapat mising value dan ketidak konsistenan ketika data digabungkan<a class="headerlink" href="#menarik-data-base-dari-posgresql-dan-mysql-menjadi-1-tabel-sekaligus-mengecek-apakah-terdapat-mising-value-dan-ketidak-konsistenan-ketika-data-digabungkan" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># Koneksi PostgreSQL</span>
+<span class="n">PG_HOST</span> <span class="o">=</span> <span class="s2">&quot;posgesqlpendata23-175-posgresqlpendata23-175.h.aivencloud.com&quot;</span>
+<span class="n">PG_PORT</span> <span class="o">=</span> <span class="s2">&quot;17047&quot;</span>
+<span class="n">PG_NAME</span> <span class="o">=</span> <span class="s2">&quot;defaultdb&quot;</span>
+<span class="n">PG_USER</span> <span class="o">=</span> <span class="s2">&quot;avnadmin&quot;</span>
+<span class="n">PG_PASS</span> <span class="o">=</span> <span class="s2">&quot;AVNS_XfGwRG6_6e5BdqZXovg&quot;</span>
+
+<span class="c1"># Koneksi MySQL</span>
+<span class="n">DB_HOST</span> <span class="o">=</span> <span class="s2">&quot;mysql-pendata23-175-mysqlpendata23-175.g.aivencloud.com&quot;</span>
+<span class="n">DB_PORT</span> <span class="o">=</span> <span class="mi">17974</span>
+<span class="n">DB_NAME</span> <span class="o">=</span> <span class="s2">&quot;defaultdb&quot;</span>
+<span class="n">DB_USER</span> <span class="o">=</span> <span class="s2">&quot;avnadmin&quot;</span>
+<span class="n">DB_PASS</span> <span class="o">=</span> <span class="s2">&quot;AVNS_756YWhIqpe1WzSKsGNx&quot;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Koneksi PostgreSQL</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="n">PG_HOST</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">PG_PORT</span><span class="p">,</span> <span class="n">dbname</span><span class="o">=</span><span class="n">PG_NAME</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">PG_USER</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">PG_PASS</span><span class="p">,</span> <span class="n">sslmode</span><span class="o">=</span><span class="s2">&quot;require&quot;</span>
+    <span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="c1"># Ambil data dari PostgreSQL (ID, Class, Sepal Length, Sepal Width)</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM irisposgre.posgre;&quot;</span><span class="p">)</span>  <span class="c1"># Sesuaikan tabel</span>
+    <span class="n">pg_rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">pg_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+    <span class="n">pg_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pg_rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">pg_columns</span><span class="p">)</span>
+
+    <span class="c1"># Koneksi MySQL</span>
+    <span class="n">mysql_conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="n">DB_HOST</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">DB_PORT</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">DB_USER</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">DB_PASS</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">DB_NAME</span><span class="p">,</span>
+        <span class="n">cursorclass</span><span class="o">=</span><span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">DictCursor</span>
+    <span class="p">)</span>
+    <span class="n">mysql_cur</span> <span class="o">=</span> <span class="n">mysql_conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="c1"># Ambil data dari MySQL (ID, Petal Length, Petal Width)</span>
+    <span class="n">mysql_cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM irismysql.flowers;&quot;</span><span class="p">)</span>  <span class="c1"># Sesuaikan tabel</span>
+    <span class="n">mysql_rows</span> <span class="o">=</span> <span class="n">mysql_cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">mysql_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mysql_rows</span><span class="p">)</span>
+
+    <span class="c1"># Menggabungkan kedua tabel berdasarkan ID</span>
+    <span class="n">combined_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pg_df</span><span class="p">,</span> <span class="n">mysql_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>  <span class="c1"># Inner join</span>
+
+    <span class="c1"># Mengatur urutan kolom agar class berada di sebelah ID</span>
+    <span class="n">ordered_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal width&quot;</span><span class="p">]</span>
+    <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">ordered_columns</span><span class="p">]</span>
+
+    <span class="c1"># Menampilkan 3 data awal, tanda &quot;...&quot; di tengah, dan 3 data akhir</span>
+    <span class="n">df_selected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+        <span class="n">combined_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">&quot;...&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">combined_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)],</span> <span class="n">columns</span><span class="o">=</span><span class="n">combined_df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+        <span class="n">combined_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="p">])</span>
+
+    <span class="c1"># Menampilkan hasil dalam format tabel</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df_selected</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;keys&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;psql&quot;</span><span class="p">,</span> <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># Menutup koneksi database</span>
+    <span class="k">if</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">mysql_cur</span><span class="p">:</span>
+        <span class="n">mysql_cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">mysql_conn</span><span class="p">:</span>
+        <span class="n">mysql_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+----------------+----------------+---------------+----------------+---------------+
+| id   | class          | sepal length   | sepal width   | petal length   | petal width   |
+|------+----------------+----------------+---------------+----------------+---------------|
+| 2    | Iris-setosa    | 4.9            | 3.0           | 1.4            | 0.2           |
+| 3    | Iris-setosa    | 4.7            | 3.2           | 1.3            | 0.2           |
+| 4    | Iris-setosa    | 4.6            | 3.1           | 1.5            | 0.2           |
+| ...  | ...            | ...            | ...           | ...            | ...           |
+| 149  | Iris-virginica | 6.2            | 3.4           | 5.4            | 2.3           |
+| 150  | Iris-virginica | 5.9            | 3.0           | 5.1            | 1.8           |
+| 1    | Iris-setosa    | 20.1           | 30.5          | 86.4           | 70.0          |
++------+----------------+----------------+---------------+----------------+---------------+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="visualisasi-data">
+<h2>Visualisasi Data<a class="headerlink" href="#visualisasi-data" title="Link to this heading">#</a></h2>
+<p>Dalam analisis dataset, visualisasi data digunakan untuk memahami, mengeksplorasi, dan menampilkan pola yang ada dalam data. Dengan bantuan visualisasi, tren, hubungan antar fitur, serta distribusi data dapat lebih mudah dikenali. Penyajian data dalam bentuk grafik atau diagram membantu mempercepat proses analisis dan memberikan pemahaman yang lebih mendalam.</p>
+</section>
+<section id="korelasi-dan-asosiasi">
+<h2>Korelasi dan Asosiasi<a class="headerlink" href="#korelasi-dan-asosiasi" title="Link to this heading">#</a></h2>
+<p>Korelasi dan asosiasi merupakan proses menghitung koefisien korelasi guna menilai hubungan linier antara variabel. Tujuan dari analisis ini adalah untuk memahami keterkaitan antar variabel dalam dataset serta menentukan sejauh mana suatu variabel dapat memengaruhi variabel lainnya.</p>
+</section>
+<section id="eksplorasi-data">
+<h2>Eksplorasi Data<a class="headerlink" href="#eksplorasi-data" title="Link to this heading">#</a></h2>
+<p>Tahap eksplorasi data dilakukan sebagai langkah awal dalam analisis untuk memahami karakteristik, distribusi, dan pola dalam suatu dataset. Proses ini mencakup perhitungan statistik seperti mean, median, modus, standar deviasi, serta nilai minimum dan maksimum. Selain itu, penggunaan visualisasi data seperti histogram dan scatter plot membantu dalam mengidentifikasi pola atau tren yang mungkin muncul.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Pastikan nama kolom benar</span>
+<span class="n">sepal_length_col</span> <span class="o">=</span> <span class="s2">&quot;sepal length&quot;</span>  <span class="c1"># Sesuaikan dengan nama kolom yang benar</span>
+<span class="n">class_col</span> <span class="o">=</span> <span class="s2">&quot;class&quot;</span>  <span class="c1"># Sesuaikan dengan nama kolom yang benar</span>
+
+<span class="c1"># Tetapkan warna khusus untuk setiap class</span>
+<span class="n">custom_palette</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Iris-setosa&quot;</span><span class="p">:</span> <span class="s2">&quot;cyan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Iris-versicolor&quot;</span><span class="p">:</span> <span class="s2">&quot;magenta&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Iris-virginica&quot;</span><span class="p">:</span> <span class="s2">&quot;yellow&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Hitung statistik dasar</span>
+<span class="n">mean_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">median_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">min_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">max_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">mode_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Buat plot distribusi dengan warna yang sudah ditentukan</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">combined_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">sepal_length_col</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">class_col</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">custom_palette</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan garis rata-rata, median, min, dan max</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mean_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean: </span><span class="si">{</span><span class="n">mean_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mode_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mode: </span><span class="si">{</span><span class="n">mode_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">median_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Median: </span><span class="si">{</span><span class="n">median_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">min_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Min: </span><span class="si">{</span><span class="n">min_sepal_length</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">max_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Max: </span><span class="si">{</span><span class="n">max_sepal_length</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sepal Length&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribusi Sepal Length Berdasarkan Class (Cyan, Magenta, Kuning)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Statistics&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/def1b07bccc98b8814083e44f68735e21c362b4638b5764382fa53576720b312.png" src="_images/def1b07bccc98b8814083e44f68735e21c362b4638b5764382fa53576720b312.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Pastikan nama kolom benar</span>
+<span class="n">sepal_length_col</span> <span class="o">=</span> <span class="s2">&quot;sepal width&quot;</span>  <span class="c1"># Sesuaikan dengan nama kolom yang benar</span>
+<span class="n">class_col</span> <span class="o">=</span> <span class="s2">&quot;class&quot;</span>  <span class="c1"># Sesuaikan dengan nama kolom yang benar</span>
+
+<span class="c1"># Tetapkan warna khusus untuk setiap class</span>
+<span class="n">custom_palette</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Iris-setosa&quot;</span><span class="p">:</span> <span class="s2">&quot;cyan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Iris-versicolor&quot;</span><span class="p">:</span> <span class="s2">&quot;magenta&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Iris-virginica&quot;</span><span class="p">:</span> <span class="s2">&quot;yellow&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Hitung statistik dasar</span>
+<span class="n">mean_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">median_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">min_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">max_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">mode_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Buat plot distribusi dengan warna yang sudah ditentukan</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">combined_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">sepal_length_col</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">class_col</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">custom_palette</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan garis rata-rata, median, min, dan max</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mean_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean: </span><span class="si">{</span><span class="n">mean_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mode_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mode: </span><span class="si">{</span><span class="n">mode_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">median_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Median: </span><span class="si">{</span><span class="n">median_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">min_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Min: </span><span class="si">{</span><span class="n">min_sepal_length</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">max_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Max: </span><span class="si">{</span><span class="n">max_sepal_length</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sepal Width&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribusi Sepal Width Berdasarkan Class (Cyan, Magenta, Kuning)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Statistics&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/392c332b1647f67276f8fa87ce3fcbbe69cd222851f122ed47e93a230d43fb2a.png" src="_images/392c332b1647f67276f8fa87ce3fcbbe69cd222851f122ed47e93a230d43fb2a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Pastikan nama kolom benar</span>
+<span class="n">sepal_length_col</span> <span class="o">=</span> <span class="s2">&quot;petal length&quot;</span>  <span class="c1"># Sesuaikan dengan nama kolom yang benar</span>
+<span class="n">class_col</span> <span class="o">=</span> <span class="s2">&quot;class&quot;</span>  <span class="c1"># Sesuaikan dengan nama kolom yang benar</span>
+
+<span class="c1"># Tetapkan warna khusus untuk setiap class</span>
+<span class="n">custom_palette</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Iris-setosa&quot;</span><span class="p">:</span> <span class="s2">&quot;cyan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Iris-versicolor&quot;</span><span class="p">:</span> <span class="s2">&quot;magenta&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Iris-virginica&quot;</span><span class="p">:</span> <span class="s2">&quot;yellow&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Hitung statistik dasar</span>
+<span class="n">mean_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">median_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">min_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">max_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">mode_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Buat plot distribusi dengan warna yang sudah ditentukan</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">combined_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">sepal_length_col</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">class_col</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">custom_palette</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan garis rata-rata, median, min, dan max</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mean_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean: </span><span class="si">{</span><span class="n">mean_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mode_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mode: </span><span class="si">{</span><span class="n">mode_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">median_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Median: </span><span class="si">{</span><span class="n">median_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">min_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Min: </span><span class="si">{</span><span class="n">min_sepal_length</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">max_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Max: </span><span class="si">{</span><span class="n">max_sepal_length</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Petal Length&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribusi Petal Length Berdasarkan Class (Cyan, Magenta, Kuning)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Statistics&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bea11034fcb7316e88fb54c89642003dd77a911b47cb124ac4418221ba30ae49.png" src="_images/bea11034fcb7316e88fb54c89642003dd77a911b47cb124ac4418221ba30ae49.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Pastikan nama kolom benar</span>
+<span class="n">sepal_length_col</span> <span class="o">=</span> <span class="s2">&quot;petal width&quot;</span>  <span class="c1"># Sesuaikan dengan nama kolom yang benar</span>
+<span class="n">class_col</span> <span class="o">=</span> <span class="s2">&quot;class&quot;</span>  <span class="c1"># Sesuaikan dengan nama kolom yang benar</span>
+
+<span class="c1"># Tetapkan warna khusus untuk setiap class</span>
+<span class="n">custom_palette</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Iris-setosa&quot;</span><span class="p">:</span> <span class="s2">&quot;cyan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Iris-versicolor&quot;</span><span class="p">:</span> <span class="s2">&quot;magenta&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Iris-virginica&quot;</span><span class="p">:</span> <span class="s2">&quot;yellow&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Hitung statistik dasar</span>
+<span class="n">mean_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">median_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">min_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">max_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">mode_sepal_length</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">sepal_length_col</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Buat plot distribusi dengan warna yang sudah ditentukan</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">combined_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">sepal_length_col</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">class_col</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">custom_palette</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan garis rata-rata, median, min, dan max</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mean_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean: </span><span class="si">{</span><span class="n">mean_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mode_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mode: </span><span class="si">{</span><span class="n">mode_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">median_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Median: </span><span class="si">{</span><span class="n">median_sepal_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">min_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Min: </span><span class="si">{</span><span class="n">min_sepal_length</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">max_sepal_length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Max: </span><span class="si">{</span><span class="n">max_sepal_length</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Petal Width&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribusi Petal Width Berdasarkan Class (Cyan, Magenta, Kuning)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Statistics&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6e437b75ab0cd93ef06b776d07fb2b60e9588e277eafacc8a3700ff59e7a1ec8.png" src="_images/6e437b75ab0cd93ef06b776d07fb2b60e9588e277eafacc8a3700ff59e7a1ec8.png" />
+</div>
+</div>
+</section>
+<section id="indentifikasi-masalah-data">
+<h2>Indentifikasi Masalah Data<a class="headerlink" href="#indentifikasi-masalah-data" title="Link to this heading">#</a></h2>
+<p>merupakan proses memahami kualitas data dan memastikan bahwa data yang akan kita analisis atau gunakan dalam model machine learning sudah bersih, lengkap, dan sesuai format yang diharapkan. Hal yang perlu diperhatikan adalah:</p>
+<ul class="simple">
+<li><p>Missing Values: Menemukan data yang hilang atau tidak lengkap.</p></li>
+<li><p>Outliers: Mendeteksi nilai-nilai ekstrem yang mungkin merupakan kesalahan atau anomali.</p></li>
+<li><p>Duplikasi Data: Mengidentifikasi baris atau entri yang duplikat.</p></li>
+<li><p>Inkonsistensi: Memeriksa apakah ada ketidaksesuaian dalam format atau nilai data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Pastikan nama kolom sesuai</span>
+<span class="n">x_col</span> <span class="o">=</span> <span class="s2">&quot;sepal length&quot;</span>
+<span class="n">y_col</span> <span class="o">=</span> <span class="s2">&quot;sepal width&quot;</span>
+<span class="n">class_col</span> <span class="o">=</span> <span class="s2">&quot;class&quot;</span>
+
+<span class="c1"># Warna baru untuk setiap spesies</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Iris-setosa&quot;</span><span class="p">:</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;Iris-versicolor&quot;</span><span class="p">:</span> <span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="s2">&quot;Iris-virginica&quot;</span><span class="p">:</span> <span class="s2">&quot;cyan&quot;</span><span class="p">}</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Scatter plot dengan warna berdasarkan kelas</span>
+<span class="k">for</span> <span class="n">species</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">colors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">subset</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="n">class_col</span><span class="p">]</span> <span class="o">==</span> <span class="n">species</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="n">x_col</span><span class="p">],</span> <span class="n">subset</span><span class="p">[</span><span class="n">y_col</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">species</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># Label sumbu</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sepal Length&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Sepal Width&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Scatter Plot Sepal Length vs Sepal Width&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan legenda</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Species&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/90406e5fb0bb686147957f77a5f6dc250d1cc096df019913e5c56e15369e0d09.png" src="_images/90406e5fb0bb686147957f77a5f6dc250d1cc096df019913e5c56e15369e0d09.png" />
+</div>
+</div>
+</section>
+<section id="validasi-data">
+<h2>Validasi data<a class="headerlink" href="#validasi-data" title="Link to this heading">#</a></h2>
+<p>Validasi data dilakukan untuk memastikan bahwa data yang digunakan bersih, lengkap, dan sesuai sebelum dianalisis atau divisualisasikan dan memastikan apakah data memcerminkan realitas atau fenomena yang ingin dipelajari</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-package-untuk-mysql-dan-posgresql">Install Package untuk MySQL dan PosgreSQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-database-mysql-dan-posgresql-melalui-dari-aiven-io">Koneksi ke Database Mysql dan PosgreSQL melalui dari aiven.io</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-posgresql-dan-menampilkan-datanya">Koneksi ke PosgreSQL dan menampilkan datanya</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-mysql-dan-menampilkan-datanya">Koneksi ke MySQL dan menampilkan datanya</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-data">Sampling data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-data">Profiling Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menarik-data-base-dari-posgresql-dan-mysql-menjadi-1-tabel-sekaligus-mengecek-apakah-terdapat-mising-value-dan-ketidak-konsistenan-ketika-data-digabungkan">Menarik data base dari PosgreSql dan Mysql menjadi 1 tabel sekaligus mengecek apakah terdapat mising value dan ketidak konsistenan ketika data digabungkan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">Visualisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-dan-asosiasi">Korelasi dan Asosiasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">Eksplorasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indentifikasi-masalah-data">Indentifikasi Masalah Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validasi-data">Validasi data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
