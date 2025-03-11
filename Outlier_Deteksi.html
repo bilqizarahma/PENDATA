@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TUGAS 2 &#8212; Penambangan Data</title>
+    <title>Outlier Deteksi &#8212; Penambangan Data</title>
   
   
   
@@ -60,9 +60,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'TUGAS2';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Outlier_Deteksi';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding" href="K_Nearest_Neighbors_%28KNN%29.html" />
     <link rel="prev" title="Understanding Data" href="PendatE_DataUnderstanding_23_030.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -169,7 +172,18 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="PendatE_DataUnderstanding_23_030.html">Understanding Data</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>TUGAS 2</strong></a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#"><strong>Outlier Deteksi</strong></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="K_Nearest_Neighbors_%28KNN%29.html"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Local_Outlier_Factor_%28LOF%29.html"><strong>Deteksi Outlier dengan metode Local Outlier Factor (LOF) dalam Data Understanding</strong></a></li>
+
+
+
+
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -246,7 +260,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTUGAS2.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FOutlier_Deteksi.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -276,7 +290,7 @@
       
       
       
-      <li><a href="_sources/TUGAS2.ipynb" target="_blank"
+      <li><a href="_sources/Outlier_Deteksi.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +366,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>TUGAS 2</h1>
+    <h1>Outlier Deteksi</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -362,17 +376,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-outlier-deteksi"><strong>Penjelasan Outlier Deteksi</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-k-nearest-neighbors-knn-dalam-data-understanding"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-outlier-deteksi">1. Apa Itu Outlier Deteksi?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-knn-bisa-digunakan-untuk-deteksi-outlier">2. Mengapa KNN Bisa Digunakan untuk Deteksi Outlier?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier-dengan-knn">3. Langkah-Langkah Deteksi Outlier dengan KNN</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-metode-knn-untuk-deteksi-outlier">4. Kelebihan dan Kekurangan Metode KNN untuk Deteksi Outlier</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-outlier-deteksi"><strong>Penjelasan Outlier Deteksi</strong></a></li>
 </ul>
             </nav>
         </div>
@@ -384,56 +388,13 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tugas-2">
-<h1><strong>TUGAS 2</strong><a class="headerlink" href="#tugas-2" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="outlier-deteksi">
+<h1><strong>Outlier Deteksi</strong><a class="headerlink" href="#outlier-deteksi" title="Link to this heading">#</a></h1>
 <section id="penjelasan-outlier-deteksi">
 <h2><strong>Penjelasan Outlier Deteksi</strong><a class="headerlink" href="#penjelasan-outlier-deteksi" title="Link to this heading">#</a></h2>
-<section id="deteksi-outlier-dengan-k-nearest-neighbors-knn-dalam-data-understanding">
-<h3><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong><a class="headerlink" href="#deteksi-outlier-dengan-k-nearest-neighbors-knn-dalam-data-understanding" title="Link to this heading">#</a></h3>
-<section id="apa-itu-outlier-deteksi">
-<h4>1. Apa Itu Outlier Deteksi?<a class="headerlink" href="#apa-itu-outlier-deteksi" title="Link to this heading">#</a></h4>
-<p>Outlier deteksi (atau deteksi pencilan) adalah proses identifikasi data yang menyimpang secara signifikan dari mayoritas data dalam suatu dataset. Outlier bisa muncul karena kesalahan pengukuran, anomali sistem, atau memang fenomena yang unik.</p>
-</section>
-<section id="mengapa-knn-bisa-digunakan-untuk-deteksi-outlier">
-<h4>2. Mengapa KNN Bisa Digunakan untuk Deteksi Outlier?<a class="headerlink" href="#mengapa-knn-bisa-digunakan-untuk-deteksi-outlier" title="Link to this heading">#</a></h4>
-<p>K-Nearest Neighbors (KNN) bisa digunakan untuk deteksi outlier karena prinsip dasarnya yang mengukur kedekatan antar data berdasarkan jarak. Dalam deteksi outlier, KNN digunakan untuk melihat apakah suatu titik data memiliki tetangga yang cukup dekat atau tidak. Jika suatu data memiliki jarak yang jauh dari tetangga-tetangganya, maka kemungkinan besar data tersebut adalah outlier.</p>
-<p>Secara umum, K-Nearest Neighbors (KNN) digunakan untuk outlier detection berdasarkan prinsip berikut:</p>
-<ul class="simple">
-<li><p>Jarak ke Tetangga Terdekat → Data dihitung jaraknya ke K tetangga terdekatnya menggunakan metode seperti Euclidean Distance.</p></li>
-<li><p>Skor Keanehan (Anomaly Score) → Semakin besar jarak rata-rata ke K tetangga, semakin besar kemungkinan data tersebut adalah outlier.</p></li>
-<li><p>Perbandingan dengan Threshold → Jika jarak ke tetangga jauh lebih besar dibandingkan mayoritas data lainnya, titik tersebut dianggap sebagai anomali.</p></li>
-<li><p>Fleksibilitas Nilai K → Pemilihan K yang tepat sangat penting agar metode ini tidak terlalu sensitif atau terlalu toleran terhadap outlier.</p></li>
-</ul>
-</section>
-<section id="langkah-langkah-deteksi-outlier-dengan-knn">
-<h4>3. Langkah-Langkah Deteksi Outlier dengan KNN<a class="headerlink" href="#langkah-langkah-deteksi-outlier-dengan-knn" title="Link to this heading">#</a></h4>
-<p>Persiapkan Data → Bersihkan data, atasi nilai kosong, dan normalisasi jika diperlukan.</p>
-<p>Tentukan K (Jumlah Tetangga Terdekat) → Pilih nilai K yang sesuai, biasanya sekitar √n.</p>
-<p>Hitung Jarak ke K Tetangga → Gunakan metode seperti Euclidean Distance untuk mengukur kedekatan antar data.</p>
-<p>Identifikasi Outlier → Data dengan jarak ke K tetangga yang jauh lebih besar dari yang lain dianggap sebagai outlier.</p>
-<p>Visualisasi &amp; Analisis → Gunakan grafik untuk melihat pola outlier dan tentukan tindakan selanjutnya (hapus, ubah, atau analisis lebih lanjut)</p>
-</section>
-<section id="kelebihan-dan-kekurangan-metode-knn-untuk-deteksi-outlier">
-<h4>4. Kelebihan dan Kekurangan Metode KNN untuk Deteksi Outlier<a class="headerlink" href="#kelebihan-dan-kekurangan-metode-knn-untuk-deteksi-outlier" title="Link to this heading">#</a></h4>
-<p>Kelebihan:</p>
-<ul class="simple">
-<li><p>Tidak Memerlukan Asumsi Distribusi → Cocok untuk berbagai jenis data tanpa perlu mengasumsikan distribusi tertentu.</p></li>
-<li><p>Mudah Dipahami &amp; Diterapkan → Konsepnya sederhana, hanya berdasarkan jarak ke tetangga terdekat.</p></li>
-<li><p>Cocok untuk Data Multidimensi → Bisa bekerja dengan data yang memiliki banyak fitur.</p></li>
-<li><p>Fleksibel dengan Nilai K → Pengguna bisa menyesuaikan K untuk mengontrol sensitivitas terhadap outlier.</p></li>
-</ul>
-<p>Kekurangan:</p>
-<ul class="simple">
-<li><p>Lambat untuk Dataset Besar → Harus menghitung jarak untuk setiap titik, membuatnya tidak efisien pada dataset besar.</p></li>
-<li><p>Sensitif terhadap Nilai K → Pemilihan K yang salah bisa menyebabkan salah deteksi outlier.</p></li>
-<li><p>Kurang Efektif pada Data Tidak Berimbang → Jika dataset memiliki distribusi yang kompleks atau noise tinggi, hasilnya bisa kurang akurat.</p></li>
-<li><p>Rentan terhadap Dimensionality Curse → Pada data berdimensi tinggi, perbedaan jarak antar titik bisa menjadi kurang berarti.</p></li>
-</ul>
-</section>
-<section id="kesimpulan">
-<h4>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h4>
-<p>Metode KNN efektif untuk deteksi outlier karena tidak memerlukan asumsi distribusi dan bisa diterapkan pada data multidimensi. Namun, metode ini bisa menjadi lambat pada dataset besar dan hasilnya sangat bergantung pada pemilihan nilai K. Jika K terlalu kecil, model terlalu sensitif terhadap noise, sementara jika terlalu besar, bisa gagal mendeteksi outlier.</p>
-<p>Meskipun ada keterbatasan, KNN tetap berguna untuk dataset kecil hingga menengah, terutama jika dikombinasikan dengan metode lain untuk meningkatkan efisiensi dan akurasi.</p>
+<p>Deteksi outlier adalah proses mengidentifikasi data yang menyimpang secara signifikan dari mayoritas data dalam suatu dataset. Outlier bisa muncul karena kesalahan pengukuran, kesalahan input data, atau memang menunjukkan fenomena yang tidak biasa. Ada beberapa metode untuk mendeteksi outlier, di antaranya metode statistik, machine learning, dan visualisasi. Metode statistik seperti Z-score mengukur seberapa jauh sebuah data dari rata-rata dalam satuan standar deviasi, di mana data dengan Z-score lebih dari 3 atau kurang dari -3 sering dianggap outlier. Selain itu, metode IQR (Interquartile Range) menggunakan kuartil untuk menentukan batas bawah dan atas outlier berdasarkan selisih antara kuartil pertama (Q1) dan kuartil ketiga (Q3). Data yang berada di luar batas Q1 - 1.5 × IQR atau Q3 + 1.5 × IQR dianggap sebagai outlier.</p>
+<p>Dalam metode machine learning, beberapa teknik populer digunakan, seperti Isolation Forest yang memisahkan data anomali lebih cepat dibandingkan data normal, Local Outlier Factor (LOF) yang menilai seberapa jauh kepadatan suatu titik dibandingkan dengan titik-titik sekitarnya, dan One-Class SVM yang dilatih hanya dengan data normal untuk mendeteksi anomali. Selain itu, metode visualisasi juga sering digunakan untuk mendeteksi outlier dengan cara yang lebih intuitif. Misalnya, boxplot menampilkan distribusi data dan menunjukkan titik-titik di luar whiskers sebagai outlier, scatter plot memvisualisasikan distribusi data dua dimensi untuk melihat pola anomali, serta histogram yang membantu mengidentifikasi outlier berdasarkan frekuensi kemunculan data.</p>
+<p>Deteksi outlier sangat penting karena dapat meningkatkan akurasi model machine learning dengan menghilangkan data yang mengganggu pelatihan, mengidentifikasi kesalahan data yang perlu diperbaiki, serta membantu dalam pengambilan keputusan, terutama dalam bidang bisnis dan keuangan di mana outlier bisa menunjukkan adanya fraud atau peluang pasar yang tidak biasa. Dengan memahami dan menerapkan teknik deteksi outlier yang tepat, analisis data menjadi lebih akurat dan bermanfaat.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install pymysql
@@ -452,144 +413,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting psycopg2
-  Downloading psycopg2-2.9.10.tar.gz (385 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Preparing metadata (setup.py) ... ?25l-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-?25hBuilding wheels for collected packages: psycopg2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for psycopg2 (setup.py) ... ?25l-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-?25h  Created wheel for psycopg2: filename=psycopg2-2.9.10-cp312-cp312-linux_x86_64.whl size=635578 sha256=688b854b3718be401e5a04d75fdf4b1f90de876f13da07883c55e3df67cafe55
-  Stored in directory: /home/codespace/.cache/pip/wheels/ac/bb/ce/afa589c50b6004d3a06fc691e71bd09c9bd5f01e5921e5329b
-Successfully built psycopg2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: psycopg2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed psycopg2-2.9.10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: psycopg2 in /usr/local/python/3.12.1/lib/python3.12/site-packages (2.9.10)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.0.1</span>
@@ -601,6 +425,7 @@ Successfully built psycopg2
 </div>
 </div>
 </div>
+<p>Perintah %pip install pymysql dan %pip install psycopg2 digunakan untuk menginstal pustaka PyMySQL dan Psycopg2, yang masing-masing digunakan untuk berinteraksi dengan database MySQL dan PostgreSQL di Python. Instalasi ini diperlukan agar kode yang menghubungkan dan mengambil data dari kedua database dapat berjalan tanpa error. Jika sudah terinstal sebelumnya, perintah ini tidak perlu dijalankan lagi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
@@ -848,6 +673,7 @@ Successfully built psycopg2
 <img alt="_images/e6060a411ce40a2528219698907e8bd9cceafb4a1436d58154b431a679b50a82.png" src="_images/e6060a411ce40a2528219698907e8bd9cceafb4a1436d58154b431a679b50a82.png" />
 </div>
 </div>
+<p>Analisis ini mendeteksi outlier dalam data bunga dari PostgreSQL dan MySQL menggunakan jarak Euclidean. Data digabungkan berdasarkan <strong>id</strong> dan <strong>Class</strong>, lalu outlier ditentukan dengan threshold <strong>persentil 93.5</strong>. Hasil visualisasi menunjukkan <strong>outlier (merah) dan data normal (biru)</strong> pada scatter plot sepal dan petal. Outlier bisa disebabkan oleh <strong>variasi alami, kesalahan pencatatan, atau perbedaan jenis bunga</strong>. Jika jumlahnya banyak, investigasi lebih lanjut diperlukan. Pendekatan ini membantu mengidentifikasi anomali dan meningkatkan kualitas analisis data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung total outlier</span>
@@ -862,6 +688,7 @@ Successfully built psycopg2
 </div>
 </div>
 </div>
+<p>Analisis ini mendeteksi <strong>{total_outliers} outlier</strong> dalam dataset bunga menggunakan jarak Euclidean dengan threshold <strong>persentil 93.5</strong>. Outlier ditandai sebagai sampel yang memiliki karakteristik sepal atau petal berbeda secara signifikan dari yang lain. Keberadaan outlier ini bisa disebabkan oleh <strong>variasi alami, kesalahan pencatatan, atau perbedaan jenis bunga</strong>. Jika jumlah outlier cukup besar, perlu dilakukan investigasi lebih lanjut untuk menentukan apakah data tersebut perlu dipertahankan atau dihapus guna meningkatkan kualitas analisis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Urutkan data berdasarkan jarak dari terkecil ke terbesar</span>
@@ -1029,9 +856,10 @@ Successfully built psycopg2
 </div>
 </div>
 </div>
+<p>Data diurutkan berdasarkan <strong>jarak Euclidean</strong>, di mana sampel dengan jarak terkecil paling mirip dengan referensi, sementara jarak terbesar berpotensi sebagai <strong>outlier</strong>. Urutan ini membantu mengidentifikasi pola, distribusi jarak, dan batas deteksi outlier yang lebih akurat. Jika perbedaan signifikan, investigasi lebih lanjut diperlukan.</p>
 </section>
-</section>
-</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1073,6 +901,15 @@ Successfully built psycopg2
         <p class="prev-next-title">Understanding Data</p>
       </div>
     </a>
+    <a class="right-next"
+       href="K_Nearest_Neighbors_%28KNN%29.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1090,17 +927,7 @@ Successfully built psycopg2
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-outlier-deteksi"><strong>Penjelasan Outlier Deteksi</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-k-nearest-neighbors-knn-dalam-data-understanding"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-outlier-deteksi">1. Apa Itu Outlier Deteksi?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-knn-bisa-digunakan-untuk-deteksi-outlier">2. Mengapa KNN Bisa Digunakan untuk Deteksi Outlier?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier-dengan-knn">3. Langkah-Langkah Deteksi Outlier dengan KNN</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-metode-knn-untuk-deteksi-outlier">4. Kelebihan dan Kekurangan Metode KNN untuk Deteksi Outlier</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-outlier-deteksi"><strong>Penjelasan Outlier Deteksi</strong></a></li>
 </ul>
   </nav></div>
 
