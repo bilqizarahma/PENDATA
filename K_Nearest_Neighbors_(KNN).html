@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding &#8212; Penambangan Data</title>
+    <title>K-Nearest Neighbors (KNN) &#8212; Penambangan Data</title>
   
   
   
@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'K_Nearest_Neighbors_(KNN)';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Deteksi Outlier dengan metode Local Outlier Factor (LOF) dalam Data Understanding" href="Local_Outlier_Factor_%28LOF%29.html" />
+    <link rel="next" title="Local Outlier Factor (LOF)" href="Local_Outlier_Factor_%28LOF%29.html" />
     <link rel="prev" title="Outlier Deteksi" href="Outlier_Deteksi.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,11 +171,13 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="PendatE_DataUnderstanding_23_030.html">Understanding Data</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Outlier_Deteksi.html"><strong>Outlier Deteksi</strong></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><strong>K-Nearest Neighbors (KNN)</strong></a></li>
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="Local_Outlier_Factor_%28LOF%29.html"><strong>Deteksi Outlier dengan metode Local Outlier Factor (LOF) dalam Data Understanding</strong></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Local_Outlier_Factor_%28LOF%29.html"><strong>Local Outlier Factor (LOF)</strong></a></li>
+
 
 
 
@@ -364,7 +366,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</h1>
+    <h1>K-Nearest Neighbors (KNN)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -374,7 +376,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>K-Nearest Neighbors (KNN)</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-k-nearest-neighbors-knn-dalam-data-understanding"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kenapa-knn-bisa-digunakan-untuk-deteksi-outlier"><strong>1. Kenapa KNN Bisa Digunakan untuk Deteksi Outlier?</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier-dengan-menggunakan-knn"><strong>2. Langkah-Langkah Deteksi Outlier dengan menggunakan KNN</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan"><strong>Kesimpulan</strong></a></li>
@@ -390,7 +393,10 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="deteksi-outlier-dengan-k-nearest-neighbors-knn-dalam-data-understanding">
+  <section class="tex2jax_ignore mathjax_ignore" id="k-nearest-neighbors-knn">
+<h1><strong>K-Nearest Neighbors (KNN)</strong><a class="headerlink" href="#k-nearest-neighbors-knn" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="deteksi-outlier-dengan-k-nearest-neighbors-knn-dalam-data-understanding">
 <h1><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong><a class="headerlink" href="#deteksi-outlier-dengan-k-nearest-neighbors-knn-dalam-data-understanding" title="Link to this heading">#</a></h1>
 <p>Deteksi outlier menggunakan K-Nearest Neighbors (KNN) adalah metode yang sering digunakan dalam Data Understanding untuk mengidentifikasi data yang tidak biasa atau ekstrem dalam suatu dataset. Teknik ini bekerja dengan cara mengukur jarak antara satu titik data dengan tetangganya dan menentukan apakah titik tersebut merupakan outlier berdasarkan pola kedekatan dengan data lainnya.</p>
 </section>
@@ -785,7 +791,7 @@ Data Outlier:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><strong>Deteksi Outlier dengan metode Local Outlier Factor (LOF) dalam Data Understanding</strong></p>
+        <p class="prev-next-title"><strong>Local Outlier Factor (LOF)</strong></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -806,7 +812,8 @@ Data Outlier:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>K-Nearest Neighbors (KNN)</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-k-nearest-neighbors-knn-dalam-data-understanding"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kenapa-knn-bisa-digunakan-untuk-deteksi-outlier"><strong>1. Kenapa KNN Bisa Digunakan untuk Deteksi Outlier?</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier-dengan-menggunakan-knn"><strong>2. Langkah-Langkah Deteksi Outlier dengan menggunakan KNN</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan"><strong>Kesimpulan</strong></a></li>
