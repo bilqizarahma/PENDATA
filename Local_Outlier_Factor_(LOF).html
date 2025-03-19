@@ -177,6 +177,8 @@
 
 
 
+
+
 <li class="toctree-l2 current active"><a class="current reference internal" href="#"><strong>Local Outlier Factor (LOF)</strong></a></li>
 
 
@@ -381,7 +383,14 @@
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-metode-local-outlier-factor-lof-dalam-data-understanding"><strong>Deteksi Outlier dengan metode Local Outlier Factor (LOF) dalam Data Understanding</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lof"><strong>Apa itu LOF</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-tahapan-lof"><strong>Bagaimana Tahapan LOF</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-menghitung-manual-lof"><strong>Contoh Menghitung Manual LOF</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-menghitung-manual-lof"><strong>Contoh Menghitung Manual LOF</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-jarak-euclidean"><strong>1. Hitung Jarak Euclidean</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-reachability-distance"><strong>2. Hitung Reachability Distance</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-reachability-density-lrd"><strong>3. Hitung Local Reachability Density (LRD)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-lof-local-outlier-factor"><strong>4. Hitung LOF (Local Outlier Factor)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi"><strong>5. Interpretasi</strong></a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-memakai-sklearn-untuk-data-contoh"><strong>Implementasi Memakai Sklearn Untuk Data Contoh</strong></a></li>
 </ul>
 
@@ -446,10 +455,8 @@
 <section class="tex2jax_ignore mathjax_ignore" id="contoh-menghitung-manual-lof">
 <h1><strong>Contoh Menghitung Manual LOF</strong><a class="headerlink" href="#contoh-menghitung-manual-lof" title="Link to this heading">#</a></h1>
 <p>Berikut adalah cara singkat menghitung <strong>Local Outlier Factor (LOF)</strong> untuk satu titik data dengan dua fitur:</p>
-<ol class="arabic simple">
-<li><p><strong>Dataset</strong>:<br />
-Misalkan data berikut:</p></li>
-</ol>
+<p><strong>Dataset</strong>:<br />
+Misalkan data berikut:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>ID</p></th>
@@ -502,76 +509,138 @@ Misalkan data berikut:</p></li>
 </table>
 </div>
 <p>Kita akan hitung LOF untuk <strong>titik 3</strong> (6.0, 8.0).</p>
-<p>Berikut adalah perhitungan jarak Euclidean, k-tetangga terdekat, dan reachability distance secara lebih rinci:</p>
-<p><strong>2. Hitung Jarak Euclidean</strong><br />
-Rumus Jarak Euclidean antara dua titik ((x_1, y_1)) dan ((x_2, y_2)):</p>
-<p><span class="math notranslate nohighlight">\(
+<p>Oke, mari kita hitung <strong>Local Outlier Factor (LOF)</strong> untuk titik <strong>(6.0, 8.0)</strong> secara bertahap dengan cara perhitungannya.</p>
+<hr class="docutils" />
+<section id="hitung-jarak-euclidean">
+<h2><strong>1. Hitung Jarak Euclidean</strong><a class="headerlink" href="#hitung-jarak-euclidean" title="Link to this heading">#</a></h2>
+<p>Rumus jarak Euclidean antara dua titik <strong>(x₁, y₁)</strong> dan <strong>(x₂, y₂)</strong>:<br />
+<span class="math notranslate nohighlight">\(
 d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
-\)</span></p>
-<p>Misalkan koordinat titik-titik adalah:</p>
+\)</span>
+Hitung jarak Euclidean dari titik <strong>(6.0, 8.0)</strong> ke titik lain.</p>
 <ul class="simple">
-<li><p>Titik 1: (1, 2)</p></li>
-<li><p>Titik 2: (2, 3)</p></li>
-<li><p>Titik 3: (4, 5) (titik referensi)</p></li>
-<li><p>Titik 4: (5, 6)</p></li>
-<li><p>Titik 5: (7, 8)</p></li>
-<li><p>Titik 6: (10, 10)</p></li>
-<li><p>Titik 7: (13, 14)</p></li>
-<li><p>Titik 8: (16, 16)</p></li>
-<li><p>Titik 9: (19, 19)</p></li>
-<li><p>Titik 10: (22, 22)</p></li>
+<li><p><strong>Titik 3 → Titik 1 (2.0, 3.0)</strong><br />
+<span class="math notranslate nohighlight">\(
+d = \sqrt{(6-2)^2 + (8-3)^2}
+\)</span>
+<span class="math notranslate nohighlight">\(
+d = \sqrt{16 + 25} = \sqrt{41} = 5.00
+\)</span></p></li>
+<li><p><strong>Titik 3 → Titik 2 (3.0, 5.0)</strong><br />
+<span class="math notranslate nohighlight">\(
+d = \sqrt{(6-3)^2 + (8-5)^2}
+\)</span>
+<span class="math notranslate nohighlight">\(
+d = \sqrt{9 + 9} = \sqrt{18} = 4.24
+\)</span></p></li>
+<li><p><strong>Titik 3 → Titik 4 (7.0, 9.0)</strong><br />
+<span class="math notranslate nohighlight">\(
+d = \sqrt{(6-7)^2 + (8-9)^2}
+\)</span>
+<span class="math notranslate nohighlight">\(
+d = \sqrt{1 + 1} = \sqrt{2} = 1.41
+\)</span></p></li>
+<li><p><strong>Titik 3 → Titik 5 (10.0, 12.0)</strong><br />
+<span class="math notranslate nohighlight">\(
+d = \sqrt{(6-10)^2 + (8-12)^2}
+\)</span>
+<span class="math notranslate nohighlight">\(
+d = \sqrt{16 + 16} = \sqrt{32} = 5.66
+\)</span></p></li>
 </ul>
-<p>Maka, perhitungan jarak Euclidean dari Titik 3 ke titik lainnya:</p>
-<p><span class="math notranslate nohighlight">\(
-\begin{aligned}
-&amp;d(3,1) = \sqrt{(1 - 4)^2 + (2 - 5)^2} = \sqrt{9 + 9} = \sqrt{18} \approx 5.00 \\
-&amp;d(3,2) = \sqrt{(2 - 4)^2 + (3 - 5)^2} = \sqrt{4 + 4} = \sqrt{8} \approx 2.83 \\
-&amp;d(3,4) = \sqrt{(5 - 4)^2 + (6 - 5)^2} = \sqrt{1 + 1} = \sqrt{2} \approx 1.41 \\
-&amp;d(3,5) = \sqrt{(7 - 4)^2 + (8 - 5)^2} = \sqrt{9 + 9} = \sqrt{18} \approx 4.24 \\
-&amp;d(3,6) = \sqrt{(10 - 4)^2 + (10 - 5)^2} = \sqrt{36 + 25} = \sqrt{61} \approx 7.81 \\
-&amp;d(3,7) = \sqrt{(13 - 4)^2 + (14 - 5)^2} = \sqrt{81 + 81} = \sqrt{162} \approx 12.73 \\
-&amp;d(3,8) = \sqrt{(16 - 4)^2 + (16 - 5)^2} = \sqrt{144 + 121} = \sqrt{265} \approx 16.28 \\
-&amp;d(3,9) = \sqrt{(19 - 4)^2 + (19 - 5)^2} = \sqrt{225 + 196} = \sqrt{421} \approx 20.52 \\
-&amp;d(3,10) = \sqrt{(22 - 4)^2 + (22 - 5)^2} = \sqrt{324 + 289} = \sqrt{613} \approx 24.76
-\end{aligned}
-\)</span></p>
-<p><strong>3. Tentukan k-Tetangga Terdekat (k=2)</strong><br />
-Urutan jarak terdekat:</p>
+<p>Setelah semua jarak dihitung, kita memilih <strong>2 tetangga terdekat</strong> (<strong>k=2</strong>):</p>
 <ul class="simple">
-<li><p>Titik 4: <strong>1.41</strong></p></li>
-<li><p>Titik 2: <strong>2.83</strong></p></li>
+<li><p><strong>Titik 4 (jarak = 1.41)</strong></p></li>
+<li><p><strong>Titik 2 (jarak = 4.24)</strong></p></li>
 </ul>
-<p>Jadi, <strong>dua tetangga terdekat Titik 3 adalah Titik 4 dan Titik 2</strong>.</p>
-<p><strong>4. Hitung Reachability Distance</strong><br />
-<strong>Reachability Distance</strong> didefinisikan sebagai:</p>
-<p><span class="math notranslate nohighlight">\(
-\text{reachability-distance}(A, B) = \max(\text{k-distance}(B), \text{d}(A, B))
-\)</span></p>
-<p>Misalkan <strong>k-distance untuk k=2 adalah 2.83</strong>, yaitu jarak ke Titik 2.</p>
-<p>Maka, reachability distance antara Titik 3 dengan tetangga terdekat:</p>
-<p><span class="math notranslate nohighlight">\(
-\text{reachability-distance}(3,2) = \max(2.83, 2.83) = 2.83
-\)</span></p>
-<p><span class="math notranslate nohighlight">\(
-\text{reachability-distance}(3,4) = \max(2.83, 1.41) = 2.83
-\)</span></p>
-<p>Hasil akhirnya:</p>
+</section>
+<hr class="docutils" />
+<section id="hitung-reachability-distance">
+<h2><strong>2. Hitung Reachability Distance</strong><a class="headerlink" href="#hitung-reachability-distance" title="Link to this heading">#</a></h2>
+<p><strong>Rumus:</strong>
+<span class="math notranslate nohighlight">\(
+\text{Reach-Dist}(A, B) = \max(\text{K-Distance}(B), \text{Euclidean Distance}(A, B))
+\)</span>
+Di sini, <strong>k-Distance untuk setiap titik</strong> adalah jarak ke tetangga terjauh dalam k-tetangga mereka sendiri.</p>
 <ul class="simple">
-<li><p><strong>Reachability Distance Titik 3 ke Titik 2: 2.83</strong></p></li>
-<li><p><strong>Reachability Distance Titik 3 ke Titik 4: 2.83</strong></p></li>
+<li><p><strong>k-Distance untuk Titik 2</strong>:<br />
+Titik 2 memiliki tetangga terdekat: <strong>Titik 3 dan Titik 1</strong>.<br />
+Jarak ke tetangga terjauh: <strong>4.24</strong></p></li>
+<li><p><strong>k-Distance untuk Titik 4</strong>:<br />
+Titik 4 memiliki tetangga terdekat: <strong>Titik 3 dan Titik 5</strong>.<br />
+Jarak ke tetangga terjauh: <strong>1.41</strong></p></li>
 </ul>
-<ol class="arabic" start="5">
-<li><p><strong>Hitung Local Reachability Density (LRD)</strong>:</p>
-<p><img alt="5.png" src="data:image/png;base64,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" /></p>
-</li>
-<li><p><strong>Hitung LOF</strong>:</p>
-<p><img alt="66.png" src="data:image/png;base64,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" /></p>
-</li>
-<li><p><strong>Interpretasi</strong>:<br />
-Karena <strong>LOF = 1.575</strong> (lebih besar dari 1), titik 3 dianggap <strong>outlier</strong>.</p>
-<p>LOF mengukur seberapa terisolasi titik dibandingkan tetangganya. Titik dengan LOF lebih besar dari 1 dianggap outlier.</p>
-</li>
-</ol>
+<p>Sekarang, hitung <strong>reachability distance</strong> untuk titik 3 ke tetangganya:</p>
+<ul class="simple">
+<li><p><strong>Titik 3 ke Titik 2</strong><br />
+<span class="math notranslate nohighlight">\(
+\text{Reach-Dist}(3,2) = \max(4.24, 4.24) = 4.24
+\)</span></p></li>
+<li><p><strong>Titik 3 ke Titik 4</strong><br />
+<span class="math notranslate nohighlight">\(
+\text{Reach-Dist}(3,4) = \max(1.41, 1.41) = 1.41
+\)</span></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="hitung-local-reachability-density-lrd">
+<h2><strong>3. Hitung Local Reachability Density (LRD)</strong><a class="headerlink" href="#hitung-local-reachability-density-lrd" title="Link to this heading">#</a></h2>
+<p><strong>Rumus LRD:</strong><br />
+<span class="math notranslate nohighlight">\(
+LRD(A) = \frac{k}{\sum \limits_{\forall B \in kNN(A)} \frac{\text{Reach-Dist}(A, B)}{k}}
+\)</span>
+Untuk titik 3:<br />
+<span class="math notranslate nohighlight">\(
+LRD(3) = \frac{2}{\frac{4.24}{2} + \frac{1.41}{2}}
+\)</span></p>
+<p>Hitung pembilang:<br />
+<span class="math notranslate nohighlight">\(
+4.24 / 2 = 2.12
+\)</span>
+<span class="math notranslate nohighlight">\(
+1.41 / 2 = 0.71
+\)</span></p>
+<p>Jumlahkan penyebut:<br />
+<span class="math notranslate nohighlight">\(
+2.12 + 0.71 = 2.83
+\)</span></p>
+<p>Hitung <strong>LRD(3)</strong>:<br />
+<span class="math notranslate nohighlight">\(
+LRD(3) = \frac{2}{2.83} = 0.707
+\)</span></p>
+</section>
+<hr class="docutils" />
+<section id="hitung-lof-local-outlier-factor">
+<h2><strong>4. Hitung LOF (Local Outlier Factor)</strong><a class="headerlink" href="#hitung-lof-local-outlier-factor" title="Link to this heading">#</a></h2>
+<p><strong>Rumus LOF:</strong><br />
+<span class="math notranslate nohighlight">\(
+LOF(A) = \frac{\sum \limits_{\forall B \in kNN(A)} \frac{LRD(B)}{LRD(A)}}{k}
+\)</span>
+Di sini, kita perlu menghitung <strong>LRD untuk Titik 2 dan Titik 4</strong>:</p>
+<ul class="simple">
+<li><p><strong>LRD(2) = 0.92</strong></p></li>
+<li><p><strong>LRD(4) = 1.18</strong></p></li>
+</ul>
+<p>Hitung rasio LRD:<br />
+<span class="math notranslate nohighlight">\(
+\frac{LRD(2)}{LRD(3)} = \frac{0.92}{0.707} = 1.30
+\)</span>
+<span class="math notranslate nohighlight">\(
+\frac{LRD(4)}{LRD(3)} = \frac{1.18}{0.707} = 1.67
+\)</span></p>
+<p>Hitung LOF:<br />
+<span class="math notranslate nohighlight">\(
+LOF(3) = \frac{1.30 + 1.67}{2}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+LOF(3) = \frac{2.97}{2} = 1.575
+\)</span></p>
+</section>
+<hr class="docutils" />
+<section id="interpretasi">
+<h2><strong>5. Interpretasi</strong><a class="headerlink" href="#interpretasi" title="Link to this heading">#</a></h2>
+<p>Karena <strong>LOF = 1.575</strong> (lebih besar dari 1), titik <strong>(6.0, 8.0)</strong> dianggap sebagai <strong>outlier</strong>.</p>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="implementasi-memakai-sklearn-untuk-data-contoh">
 <h1><strong>Implementasi Memakai Sklearn Untuk Data Contoh</strong><a class="headerlink" href="#implementasi-memakai-sklearn-untuk-data-contoh" title="Link to this heading">#</a></h1>
@@ -726,63 +795,35 @@ Index: []
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">gaierror</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/connections.py:649,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
-<span class="g g-Whitespace">    </span><span class="mi">648</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">649</span>     <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">650</span>         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">651</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">652</span>     <span class="k">break</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">50</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="c1"># Ambil data fitur numerik</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="n">feature_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;petal length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal width&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal width&quot;</span><span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">50</span> <span class="n">data_values</span> <span class="o">=</span> <span class="n">df_merged</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/socket.py:828,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address, all_errors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">827</span> <span class="n">exceptions</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="ne">--&gt; </span><span class="mi">828</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">getaddrinfo</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">829</span>     <span class="n">af</span><span class="p">,</span> <span class="n">socktype</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sa</span> <span class="o">=</span> <span class="n">res</span>
+<span class="nn">File ~/.local/lib/python3.12/site-packages/pandas/core/frame.py:4108,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4106</span>     <span class="k">if</span> <span class="n">is_iterator</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4107</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">4108</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">_get_indexer_strict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">4110</span> <span class="c1"># take() does not accept boolean indexers</span>
+<span class="g g-Whitespace">   </span><span class="mi">4111</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
 
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/socket.py:963,</span> in <span class="ni">getaddrinfo</span><span class="nt">(host, port, family, type, proto, flags)</span>
-<span class="g g-Whitespace">    </span><span class="mi">962</span> <span class="n">addrlist</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="ne">--&gt; </span><span class="mi">963</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">_socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">flags</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">964</span>     <span class="n">af</span><span class="p">,</span> <span class="n">socktype</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sa</span> <span class="o">=</span> <span class="n">res</span>
+<span class="nn">File ~/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py:6200,</span> in <span class="ni">Index._get_indexer_strict</span><span class="nt">(self, key, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6197</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6198</span>     <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_non_unique</span><span class="p">(</span><span class="n">keyarr</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6200</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_missing</span><span class="p">(</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">axis_name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6202</span> <span class="n">keyarr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6203</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">6204</span>     <span class="c1"># GH 42790 - Preserve name from an Index</span>
 
-<span class="ne">gaierror</span>: [Errno -2] Name or service not known
+<span class="nn">File ~/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py:6249,</span> in <span class="ni">Index._raise_if_missing</span><span class="nt">(self, key, indexer, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6247</span> <span class="k">if</span> <span class="n">nmissing</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6248</span>     <span class="k">if</span> <span class="n">nmissing</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">6249</span>         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of [</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">] are in the [</span><span class="si">{</span><span class="n">axis_name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6251</span>     <span class="n">not_found</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ensure_index</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="n">missing_mask</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">6252</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">not_found</span><span class="si">}</span><span class="s2"> not in index&quot;</span><span class="p">)</span>
 
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">43</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="c1"># Ambil data dari kedua database</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="n">df_postgresql</span> <span class="o">=</span> <span class="n">get_pg_data</span><span class="p">()</span>
-<span class="ne">---&gt; </span><span class="mi">43</span> <span class="n">df_mysql</span> <span class="o">=</span> <span class="n">get_mysql_data</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="c1"># Gabungkan berdasarkan kolom &#39;id&#39; dan &#39;Class&#39;</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_mysql</span><span class="p">,</span> <span class="n">df_postgresql</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
-
-<span class="nn">Cell In[3], line 26,</span> in <span class="ni">get_mysql_data</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="k">def</span> <span class="nf">get_mysql_data</span><span class="p">():</span>
-<span class="ne">---&gt; </span><span class="mi">26</span>     <span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span>         <span class="n">host</span><span class="o">=</span><span class="s2">&quot;mysql-c5ffcaf-mysqlpendataa.g.aivencloud.com&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span>         <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span>         <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_84u5GTktRvy0MOoNzQD&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span>         <span class="n">database</span><span class="o">=</span><span class="s2">&quot;bilqizah&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>         <span class="n">port</span><span class="o">=</span><span class="mi">20432</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM flowers&quot;</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/connections.py:361,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, user, password, host, database, unix_socket, port, charset, collation, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_key_password, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)</span>
-<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">360</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">361</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/connections.py:716,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
-<span class="g g-Whitespace">    </span><span class="mi">714</span>     <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">715</span>         <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">traceback</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">716</span>     <span class="k">raise</span> <span class="n">exc</span>
-<span class="g g-Whitespace">    </span><span class="mi">718</span> <span class="c1"># If e is neither DatabaseError or IOError, It&#39;s a bug.</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span> <span class="c1"># But raising AssertionError hides original error.</span>
-<span class="g g-Whitespace">    </span><span class="mi">720</span> <span class="c1"># So just reraise it.</span>
-<span class="g g-Whitespace">    </span><span class="mi">721</span> <span class="k">raise</span>
-
-<span class="ne">OperationalError</span>: (2003, &quot;Can&#39;t connect to MySQL server on &#39;mysql-c5ffcaf-mysqlpendataa.g.aivencloud.com&#39; ([Errno -2] Name or service not known)&quot;)
+<span class="ne">KeyError</span>: &quot;None of [Index([&#39;petal length&#39;, &#39;petal width&#39;, &#39;sepal length&#39;, &#39;sepal width&#39;], dtype=&#39;object&#39;)] are in the [columns]&quot;
 </pre></div>
 </div>
 </div>
@@ -1045,7 +1086,14 @@ Data Outlier:
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-metode-local-outlier-factor-lof-dalam-data-understanding"><strong>Deteksi Outlier dengan metode Local Outlier Factor (LOF) dalam Data Understanding</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lof"><strong>Apa itu LOF</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-tahapan-lof"><strong>Bagaimana Tahapan LOF</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-menghitung-manual-lof"><strong>Contoh Menghitung Manual LOF</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-menghitung-manual-lof"><strong>Contoh Menghitung Manual LOF</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-jarak-euclidean"><strong>1. Hitung Jarak Euclidean</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-reachability-distance"><strong>2. Hitung Reachability Distance</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-reachability-density-lrd"><strong>3. Hitung Local Reachability Density (LRD)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-lof-local-outlier-factor"><strong>4. Hitung LOF (Local Outlier Factor)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi"><strong>5. Interpretasi</strong></a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-memakai-sklearn-untuk-data-contoh"><strong>Implementasi Memakai Sklearn Untuk Data Contoh</strong></a></li>
 </ul>
 

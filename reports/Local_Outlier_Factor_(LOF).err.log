@@ -72,61 +72,33 @@ data_values = df_merged[feature_columns].values
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mgaierror[0m                                  Traceback (most recent call last)
-File [0;32m/usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/connections.py:649[0m, in [0;36mConnection.connect[0;34m(self, sock)[0m
-[1;32m    648[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 649[0m     sock [38;5;241m=[39m [43msocket[49m[38;5;241;43m.[39;49m[43mcreate_connection[49m[43m([49m
-[1;32m    650[0m [43m        [49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mhost[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mport[49m[43m)[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconnect_timeout[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m
-[1;32m    651[0m [43m    [49m[43m)[49m
-[1;32m    652[0m     [38;5;28;01mbreak[39;00m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+Cell [0;32mIn[3], line 50[0m
+[1;32m     48[0m [38;5;66;03m# Ambil data fitur numerik[39;00m
+[1;32m     49[0m feature_columns [38;5;241m=[39m [[38;5;124m"[39m[38;5;124mpetal length[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mpetal width[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124msepal length[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124msepal width[39m[38;5;124m"[39m]
+[0;32m---> 50[0m data_values [38;5;241m=[39m [43mdf_merged[49m[43m[[49m[43mfeature_columns[49m[43m][49m[38;5;241m.[39mvalues
 
-File [0;32m/usr/local/python/3.12.1/lib/python3.12/socket.py:828[0m, in [0;36mcreate_connection[0;34m(address, timeout, source_address, all_errors)[0m
-[1;32m    827[0m exceptions [38;5;241m=[39m []
-[0;32m--> 828[0m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [43mgetaddrinfo[49m[43m([49m[43mhost[49m[43m,[49m[43m [49m[43mport[49m[43m,[49m[43m [49m[38;5;241;43m0[39;49m[43m,[49m[43m [49m[43mSOCK_STREAM[49m[43m)[49m:
-[1;32m    829[0m     af, socktype, proto, canonname, sa [38;5;241m=[39m res
+File [0;32m~/.local/lib/python3.12/site-packages/pandas/core/frame.py:4108[0m, in [0;36mDataFrame.__getitem__[0;34m(self, key)[0m
+[1;32m   4106[0m     [38;5;28;01mif[39;00m is_iterator(key):
+[1;32m   4107[0m         key [38;5;241m=[39m [38;5;28mlist[39m(key)
+[0;32m-> 4108[0m     indexer [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcolumns[49m[38;5;241;43m.[39;49m[43m_get_indexer_strict[49m[43m([49m[43mkey[49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mcolumns[39;49m[38;5;124;43m"[39;49m[43m)[49m[[38;5;241m1[39m]
+[1;32m   4110[0m [38;5;66;03m# take() does not accept boolean indexers[39;00m
+[1;32m   4111[0m [38;5;28;01mif[39;00m [38;5;28mgetattr[39m(indexer, [38;5;124m"[39m[38;5;124mdtype[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m) [38;5;241m==[39m [38;5;28mbool[39m:
 
-File [0;32m/usr/local/python/3.12.1/lib/python3.12/socket.py:963[0m, in [0;36mgetaddrinfo[0;34m(host, port, family, type, proto, flags)[0m
-[1;32m    962[0m addrlist [38;5;241m=[39m []
-[0;32m--> 963[0m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [43m_socket[49m[38;5;241;43m.[39;49m[43mgetaddrinfo[49m[43m([49m[43mhost[49m[43m,[49m[43m [49m[43mport[49m[43m,[49m[43m [49m[43mfamily[49m[43m,[49m[43m [49m[38;5;28;43mtype[39;49m[43m,[49m[43m [49m[43mproto[49m[43m,[49m[43m [49m[43mflags[49m[43m)[49m:
-[1;32m    964[0m     af, socktype, proto, canonname, sa [38;5;241m=[39m res
+File [0;32m~/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py:6200[0m, in [0;36mIndex._get_indexer_strict[0;34m(self, key, axis_name)[0m
+[1;32m   6197[0m [38;5;28;01melse[39;00m:
+[1;32m   6198[0m     keyarr, indexer, new_indexer [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_reindex_non_unique(keyarr)
+[0;32m-> 6200[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_raise_if_missing[49m[43m([49m[43mkeyarr[49m[43m,[49m[43m [49m[43mindexer[49m[43m,[49m[43m [49m[43maxis_name[49m[43m)[49m
+[1;32m   6202[0m keyarr [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mtake(indexer)
+[1;32m   6203[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(key, Index):
+[1;32m   6204[0m     [38;5;66;03m# GH 42790 - Preserve name from an Index[39;00m
 
-[0;31mgaierror[0m: [Errno -2] Name or service not known
+File [0;32m~/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py:6249[0m, in [0;36mIndex._raise_if_missing[0;34m(self, key, indexer, axis_name)[0m
+[1;32m   6247[0m [38;5;28;01mif[39;00m nmissing:
+[1;32m   6248[0m     [38;5;28;01mif[39;00m nmissing [38;5;241m==[39m [38;5;28mlen[39m(indexer):
+[0;32m-> 6249[0m         [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mNone of [[39m[38;5;132;01m{[39;00mkey[38;5;132;01m}[39;00m[38;5;124m] are in the [[39m[38;5;132;01m{[39;00maxis_name[38;5;132;01m}[39;00m[38;5;124m][39m[38;5;124m"[39m)
+[1;32m   6251[0m     not_found [38;5;241m=[39m [38;5;28mlist[39m(ensure_index(key)[missing_mask[38;5;241m.[39mnonzero()[[38;5;241m0[39m]][38;5;241m.[39munique())
+[1;32m   6252[0m     [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mnot_found[38;5;132;01m}[39;00m[38;5;124m not in index[39m[38;5;124m"[39m)
 
-During handling of the above exception, another exception occurred:
-
-[0;31mOperationalError[0m                          Traceback (most recent call last)
-Cell [0;32mIn[3], line 43[0m
-[1;32m     41[0m [38;5;66;03m# Ambil data dari kedua database[39;00m
-[1;32m     42[0m df_postgresql [38;5;241m=[39m get_pg_data()
-[0;32m---> 43[0m df_mysql [38;5;241m=[39m [43mget_mysql_data[49m[43m([49m[43m)[49m
-[1;32m     45[0m [38;5;66;03m# Gabungkan berdasarkan kolom 'id' dan 'Class'[39;00m
-[1;32m     46[0m df_merged [38;5;241m=[39m pd[38;5;241m.[39mmerge(df_mysql, df_postgresql, on[38;5;241m=[39m[[38;5;124m"[39m[38;5;124mid[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mclass[39m[38;5;124m"[39m], how[38;5;241m=[39m[38;5;124m"[39m[38;5;124minner[39m[38;5;124m"[39m)
-
-Cell [0;32mIn[3], line 26[0m, in [0;36mget_mysql_data[0;34m()[0m
-[1;32m     25[0m [38;5;28;01mdef[39;00m [38;5;21mget_mysql_data[39m():
-[0;32m---> 26[0m     conn [38;5;241m=[39m [43mpymysql[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m
-[1;32m     27[0m [43m        [49m[43mhost[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mmysql-c5ffcaf-mysqlpendataa.g.aivencloud.com[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m     28[0m [43m        [49m[43muser[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mavnadmin[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m     29[0m [43m        [49m[43mpassword[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mAVNS_84u5GTktRvy0MOoNzQD[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m     30[0m [43m        [49m[43mdatabase[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mbilqizah[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m     31[0m [43m        [49m[43mport[49m[38;5;241;43m=[39;49m[38;5;241;43m20432[39;49m
-[1;32m     32[0m [43m    [49m[43m)[49m
-[1;32m     33[0m     cursor [38;5;241m=[39m conn[38;5;241m.[39mcursor()
-[1;32m     34[0m     cursor[38;5;241m.[39mexecute([38;5;124m"[39m[38;5;124mSELECT * FROM flowers[39m[38;5;124m"[39m)
-
-File [0;32m/usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/connections.py:361[0m, in [0;36mConnection.__init__[0;34m(self, user, password, host, database, unix_socket, port, charset, collation, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_key_password, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)[0m
-[1;32m    359[0m     [38;5;28mself[39m[38;5;241m.[39m_sock [38;5;241m=[39m [38;5;28;01mNone[39;00m
-[1;32m    360[0m [38;5;28;01melse[39;00m:
-[0;32m--> 361[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
-
-File [0;32m/usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/connections.py:716[0m, in [0;36mConnection.connect[0;34m(self, sock)[0m
-[1;32m    714[0m     [38;5;28;01mif[39;00m DEBUG:
-[1;32m    715[0m         [38;5;28mprint[39m(exc[38;5;241m.[39mtraceback)
-[0;32m--> 716[0m     [38;5;28;01mraise[39;00m exc
-[1;32m    718[0m [38;5;66;03m# If e is neither DatabaseError or IOError, It's a bug.[39;00m
-[1;32m    719[0m [38;5;66;03m# But raising AssertionError hides original error.[39;00m
-[1;32m    720[0m [38;5;66;03m# So just reraise it.[39;00m
-[1;32m    721[0m [38;5;28;01mraise[39;00m
-
-[0;31mOperationalError[0m: (2003, "Can't connect to MySQL server on 'mysql-c5ffcaf-mysqlpendataa.g.aivencloud.com' ([Errno -2] Name or service not known)")
+[0;31mKeyError[0m: "None of [Index(['petal length', 'petal width', 'sepal length', 'sepal width'], dtype='object')] are in the [columns]"
 
