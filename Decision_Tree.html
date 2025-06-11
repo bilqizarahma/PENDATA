@@ -1,0 +1,1447 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Decision Tree &#8212; Penambangan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Decision_Tree';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="FUZZY C-MEANS CLUSTERING" href="Fuzzy_C_Means.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Penambangan Data - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Penambangan Data - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Hi! Selamat Datang di Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="PendatE_DataUnderstanding_23_030.html">Understanding Data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Outlier_Deteksi.html"><strong>Outlier Deteksi</strong></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="K_Nearest_Neighbors_%28KNN%29.html"><strong>K-Nearest Neighbors (KNN)</strong></a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Local_Outlier_Factor_%28LOF%29.html"><strong>Local Outlier Factor (LOF)</strong></a></li>
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS_PENDAT.html"><strong>UTS PENAMBANGAN DATA</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="K_Means.html"><strong>Algoritma K-Means Clustering</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fuzzy_C_Means.html"><strong>FUZZY C-MEANS CLUSTERING</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Decision Tree</strong></a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDecision_Tree.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Decision_Tree.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Decision Tree</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Decision Tree</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-spesies-tumbuhan"><strong>Data Spesies Tumbuhan</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-berdasarkan-kelas"><strong>Jumlah Data Berdasarkan Kelas:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#urutkan-data-diameter-buah-cm-naik"><strong>Urutkan Data Diameter Buah (cm) (naik):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-threshold-split-contoh"><strong>Ambil Threshold Split (contoh):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-entropy-awal-sebelum-split"><strong>Hitung Entropy Awal (sebelum split):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-setelah-split"><strong>Entropy Setelah Split</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-left-20-5">Group Left (≤ 20.5):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-right-20-5">Group Right (&gt; 20.5):</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain-ig"><strong>Information Gain (IG):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-index"><strong>Gini Index</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-awal">Gini Awal:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-left">Gini Left:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-right">Gini Right:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-split">Gini Split:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-untuk-fitur-diameter-buah-cm"><strong>Hasil Akhir untuk fitur Diameter Buah (cm):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#urutkan-data-berdasarkan-berat-buah-kg"><strong>Urutkan data berdasarkan Berat Buah (kg)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Ambil threshold split (contoh):</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maka">Maka:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komposisi-kelas"><strong>Komposisi kelas:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Entropy setelah split:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-left-5-5-kg">Group Left (≤ 5.5 kg):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-right-5-5-kg">Group Right (&gt; 5.5 kg):</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain"><strong>Information Gain:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Gini Index:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-d">Gini(D):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Gini(Left):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Gini(Right):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Gini Split:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-fitur-berat-buah"><strong>Hasil Akhir Fitur “Berat Buah”</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-perbandingan-dua-fitur"><strong>Kesimpulan Perbandingan Dua Fitur:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-decision-tree">Visualisasi Decision Tree</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-splitting">Visualisasi Splitting</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-splitting-setelah-ada-2-data-baru">Visualisasi Splitting Setelah ada 2 Data Baru</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-decision-tree-dalam-bentuk-gambar">Visualisasi Decision Tree dalam bentuk gambar</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rules">Rules</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="decision-tree">
+<h1><strong>Decision Tree</strong><a class="headerlink" href="#decision-tree" title="Link to this heading">#</a></h1>
+</section>
+<section id="data-spesies-tumbuhan">
+<h1><strong>Data Spesies Tumbuhan</strong><a class="headerlink" href="#data-spesies-tumbuhan" title="Link to this heading">#</a></h1>
+<p>Data dengan 2 kelas berbeda yaitu Citrullus lanatus (semangka) dan Citrullus amarus, dengan 2 fitur yaitu Diameter Buah (cm) dan Berat Buah (kg)</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>Kelas</p></th>
+<th class="head"><p>Diameter Buah (cm)</p></th>
+<th class="head"><p>Berat Buah (kg)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Citrullus lanatus</p></td>
+<td><p>22.0</p></td>
+<td><p>6.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Citrullus lanatus</p></td>
+<td><p>21.5</p></td>
+<td><p>6.0</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Citrullus lanatus</p></td>
+<td><p>23.0</p></td>
+<td><p>7.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Citrullus lanatus</p></td>
+<td><p>20.5</p></td>
+<td><p>5.5</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Citrullus lanatus</p></td>
+<td><p>22.5</p></td>
+<td><p>6.8</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Citrullus amarus</p></td>
+<td><p>18.5</p></td>
+<td><p>4.0</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Citrullus amarus</p></td>
+<td><p>19.0</p></td>
+<td><p>4.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Citrullus amarus</p></td>
+<td><p>20.0</p></td>
+<td><p>5.0</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Citrullus amarus</p></td>
+<td><p>18.0</p></td>
+<td><p>3.8</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Citrullus amarus</p></td>
+<td><p>20.5</p></td>
+<td><p>5.2</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Citrullus lanatus</p></td>
+<td><p>23.5</p></td>
+<td><p>7.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Citrullus lanatus</p></td>
+<td><p>22.0</p></td>
+<td><p>6.3</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>Citrullus amarus</p></td>
+<td><p>19.5</p></td>
+<td><p>4.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>Citrullus lanatus</p></td>
+<td><p>21.0</p></td>
+<td><p>6.0</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>Citrullus amarus</p></td>
+<td><p>19.0</p></td>
+<td><p>4.3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sekarang kita akan sesuaikan perhitungan manual decision tree berdasarkan data <em>Citrullus lanatus</em> dan <em>Citrullus amarus</em> dengan fitur <strong>Diameter Buah (cm)</strong>.</p>
+<hr class="docutils" />
+<section id="jumlah-data-berdasarkan-kelas">
+<h2><strong>Jumlah Data Berdasarkan Kelas:</strong><a class="headerlink" href="#jumlah-data-berdasarkan-kelas" title="Link to this heading">#</a></h2>
+<p>Total data: 15</p>
+<ul class="simple">
+<li><p><strong>Citrullus lanatus</strong> = 8 data</p></li>
+<li><p><strong>Citrullus amarus</strong> = 7 data</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="urutkan-data-diameter-buah-cm-naik">
+<h2><strong>Urutkan Data Diameter Buah (cm) (naik):</strong><a class="headerlink" href="#urutkan-data-diameter-buah-cm-naik" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>Diameter</p></th>
+<th class="head"><p>Kelas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>18.0</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>18.5</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>19.0</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>19.0</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>19.5</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>20.0</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>20.5</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>20.5</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>21.0</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>21.5</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>22.0</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>22.0</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>22.5</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>23.0</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>23.5</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ambil-threshold-split-contoh">
+<h2><strong>Ambil Threshold Split (contoh):</strong><a class="headerlink" href="#ambil-threshold-split-contoh" title="Link to this heading">#</a></h2>
+<p>Kita ambil threshold misalnya <strong>20.5 cm</strong></p>
+<ul class="simple">
+<li><p>Group Left (≤ 20.5)</p></li>
+<li><p>Group Right (&gt; 20.5)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="hitung-entropy-awal-sebelum-split">
+<h2><strong>Hitung Entropy Awal (sebelum split):</strong><a class="headerlink" href="#hitung-entropy-awal-sebelum-split" title="Link to this heading">#</a></h2>
+<p>Jumlah kelas:</p>
+<ul class="simple">
+<li><p>Citrullus lanatus: 8</p></li>
+<li><p>Citrullus amarus: 7</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p_1 = \frac{8}{15}, \quad p_2 = \frac{7}{15}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Entropy(D) = -\left(\frac{8}{15}\log_2\frac{8}{15} + \frac{7}{15}\log_2\frac{7}{15}\right)
+\]</div>
+<p>Hitung:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{8}{15} \approx 0.5333, \quad \frac{7}{15} \approx 0.4667
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Entropy(D) \approx -0.5333 \cdot \log_2 0.5333 - 0.4667 \cdot \log_2 0.4667
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\approx -0.5333 \cdot (-0.9069) - 0.4667 \cdot (-1.0984)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\approx 0.4836 + 0.5122 = 0.9958 \approx 0.996
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="entropy-setelah-split">
+<h2><strong>Entropy Setelah Split</strong><a class="headerlink" href="#entropy-setelah-split" title="Link to this heading">#</a></h2>
+<section id="group-left-20-5">
+<h3>Group Left (≤ 20.5):<a class="headerlink" href="#group-left-20-5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Data: No 9, 6, 7, 15, 13, 8, 4, 10 → 8 data</p></li>
+<li><p>Kelas:</p>
+<ul>
+<li><p>Citrullus amarus = 7</p></li>
+<li><p>Citrullus lanatus = 1</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p_{amarus} = \frac{7}{8}, \quad p_{lanatus} = \frac{1}{8}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Entropy(left) = -\left( \frac{7}{8}\log_2 \frac{7}{8} + \frac{1}{8}\log_2 \frac{1}{8} \right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{7}{8} = 0.875, \quad \frac{1}{8} = 0.125
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Entropy(left) \approx -0.875 \cdot (-0.1926) - 0.125 \cdot (-3)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\approx 0.1685 + 0.375 = 0.5435 \approx 0.543
+\]</div>
+</section>
+<section id="group-right-20-5">
+<h3>Group Right (&gt; 20.5):<a class="headerlink" href="#group-right-20-5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Data: No 14, 2, 1, 12, 5, 3, 11 → 7 data</p></li>
+<li><p>Kelas:</p>
+<ul>
+<li><p>Citrullus lanatus = 7</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+Entropy(right) = 0
+\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="information-gain-ig">
+<h2><strong>Information Gain (IG):</strong><a class="headerlink" href="#information-gain-ig" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+IG = Entropy(D) - \left( \frac{8}{15} \cdot Entropy(left) + \frac{7}{15} \cdot Entropy(right) \right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+IG = 0.996 - \left( \frac{8}{15} \cdot 0.543 + \frac{7}{15} \cdot 0 \right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= 0.996 - \left( 0.5333 \cdot 0.543 \right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= 0.996 - 0.2896 = 0.7064 \approx \boxed{0.706}
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="gini-index">
+<h2><strong>Gini Index</strong><a class="headerlink" href="#gini-index" title="Link to this heading">#</a></h2>
+<section id="gini-awal">
+<h3>Gini Awal:<a class="headerlink" href="#gini-awal" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+Gini(D) = 1 - \left( \left(\frac{8}{15}\right)^2 + \left(\frac{7}{15}\right)^2 \right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= 1 - \left( 0.2844 + 0.2178 \right) = 1 - 0.5022 = 0.4978 \approx 0.497
+\]</div>
+</section>
+<section id="gini-left">
+<h3>Gini Left:<a class="headerlink" href="#gini-left" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+Gini(left) = 1 - \left( \left( \frac{7}{8} \right)^2 + \left( \frac{1}{8} \right)^2 \right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= 1 - (0.765625 + 0.015625) = 1 - 0.78125 = 0.21875
+\]</div>
+</section>
+<section id="gini-right">
+<h3>Gini Right:<a class="headerlink" href="#gini-right" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+Gini(right) = 0 \quad \text{(pure class)}
+\]</div>
+</section>
+<section id="gini-split">
+<h3>Gini Split:<a class="headerlink" href="#gini-split" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+Gini_{split} = \frac{8}{15} \cdot 0.21875 + \frac{7}{15} \cdot 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= 0.5333 \cdot 0.21875 = 0.1166 \approx \boxed{0.116}
+\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hasil-akhir-untuk-fitur-diameter-buah-cm">
+<h2><strong>Hasil Akhir untuk fitur Diameter Buah (cm):</strong><a class="headerlink" href="#hasil-akhir-untuk-fitur-diameter-buah-cm" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ukuran Evaluasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Entropy Awal</p></td>
+<td><p>0.996</p></td>
+</tr>
+<tr class="row-odd"><td><p>Information Gain</p></td>
+<td><p>0.706</p></td>
+</tr>
+<tr class="row-even"><td><p>Gini Split</p></td>
+<td><p>0.116</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sekarang kita sesuaikan perhitungan manual di atas berdasarkan data <strong>Citrullus lanatus</strong> dan <strong>Citrullus amarus</strong>, menggunakan fitur <strong>Berat Buah (kg)</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="urutkan-data-berdasarkan-berat-buah-kg">
+<h2><strong>Urutkan data berdasarkan Berat Buah (kg)</strong><a class="headerlink" href="#urutkan-data-berdasarkan-berat-buah-kg" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>Berat (kg)</p></th>
+<th class="head"><p>Kelas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>3.8</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>4.0</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>4.2</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>4.3</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>4.5</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>5.0</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>5.2</p></td>
+<td><p>Citrullus amarus</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>5.5</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>6.0</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>6.0</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>6.3</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>6.5</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>6.8</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>7.0</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>7.5</p></td>
+<td><p>Citrullus lanatus</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2><strong>Ambil threshold split (contoh):</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Kita ambil threshold: <strong>5.5 kg</strong>
+(Karena di sini mulai transisi dari <em>amarus</em> ke <em>lanatus</em>)</p>
+<section id="maka">
+<h3>Maka:<a class="headerlink" href="#maka" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Group Left (≤ 5.5 kg)</strong>: No 9, 6, 7, 15, 13, 8, 10, 4 → 8 data</p></li>
+<li><p><strong>Group Right (&gt; 5.5 kg)</strong>: No 2, 14, 12, 1, 5, 3, 11 → 7 data</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="komposisi-kelas">
+<h2><strong>Komposisi kelas:</strong><a class="headerlink" href="#komposisi-kelas" title="Link to this heading">#</a></h2>
+<p>Sebelum split:</p>
+<ul class="simple">
+<li><p><strong>Citrullus lanatus</strong>: 8</p></li>
+<li><p><strong>Citrullus amarus</strong>: 7</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+Entropy(D) = -\frac{8}{15} \log_2 \frac{8}{15} - \frac{7}{15} \log_2 \frac{7}{15} \approx 0.996
+\]</div>
+<p>(Sama seperti sebelumnya)</p>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2><strong>Entropy setelah split:</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="group-left-5-5-kg">
+<h3>Group Left (≤ 5.5 kg):<a class="headerlink" href="#group-left-5-5-kg" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>7 <em>Citrullus amarus</em>: No 9, 6, 7, 15, 13, 8, 10</p></li>
+<li><p>1 <em>Citrullus lanatus</em>: No 4</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p_{amarus} = \frac{7}{8}, \quad p_{lanatus} = \frac{1}{8}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Entropy(left) = -\frac{7}{8} \log_2 \frac{7}{8} - \frac{1}{8} \log_2 \frac{1}{8}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= -0.875 \log_2 0.875 - 0.125 \log_2 0.125
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\approx -0.875(-0.1926) - 0.125(-3) = 0.1685 + 0.375 = 0.5435 \approx 0.543
+\]</div>
+</section>
+<section id="group-right-5-5-kg">
+<h3>Group Right (&gt; 5.5 kg):<a class="headerlink" href="#group-right-5-5-kg" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>7 <em>Citrullus lanatus</em>: No 2, 14, 12, 1, 5, 3, 11</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+Entropy(right) = 0
+\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="information-gain">
+<h2><strong>Information Gain:</strong><a class="headerlink" href="#information-gain" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+IG = Entropy(D) - \left( \frac{8}{15} \cdot 0.543 + \frac{7}{15} \cdot 0 \right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= 0.996 - 0.5333 \cdot 0.543
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= 0.996 - 0.2896 = 0.7064 \approx \boxed{0.706}
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2><strong>Gini Index:</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="gini-d">
+<h3>Gini(D):<a class="headerlink" href="#gini-d" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+Gini(D) = 1 - \left( \left( \frac{8}{15} \right)^2 + \left( \frac{7}{15} \right)^2 \right) \approx 0.497
+\]</div>
+</section>
+<section id="id4">
+<h3>Gini(Left):<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+Gini(left) = 1 - \left( \frac{7}{8} \right)^2 - \left( \frac{1}{8} \right)^2
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= 1 - 0.765625 - 0.015625 = 0.21875
+\]</div>
+</section>
+<section id="id5">
+<h3>Gini(Right):<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+Gini(right) = 0
+\]</div>
+</section>
+<section id="id6">
+<h3>Gini Split:<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+Gini_{split} = \frac{8}{15} \cdot 0.21875 + \frac{7}{15} \cdot 0 = 0.5333 \cdot 0.21875 = 0.1166 \approx \boxed{0.116}
+\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hasil-akhir-fitur-berat-buah">
+<h2><strong>Hasil Akhir Fitur “Berat Buah”</strong><a class="headerlink" href="#hasil-akhir-fitur-berat-buah" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ukuran Evaluasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Entropy Awal</p></td>
+<td><p>0.996</p></td>
+</tr>
+<tr class="row-odd"><td><p>Information Gain</p></td>
+<td><p>0.706</p></td>
+</tr>
+<tr class="row-even"><td><p>Gini Split</p></td>
+<td><p>0.116</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan-perbandingan-dua-fitur">
+<h2><strong>Kesimpulan Perbandingan Dua Fitur:</strong><a class="headerlink" href="#kesimpulan-perbandingan-dua-fitur" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Information Gain</p></th>
+<th class="head"><p>Gini Split</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Diameter Buah</p></td>
+<td><p>0.706</p></td>
+<td><p>0.116</p></td>
+</tr>
+<tr class="row-odd"><td><p>Berat Buah</p></td>
+<td><p>0.706</p></td>
+<td><p>0.116</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pada dataset ini, baik <strong>Diameter</strong> maupun <strong>Berat</strong> sama-sama memberikan hasil split yang identik. Artinya, keduanya sama-sama fitur yang baik secara Information Gain maupun Gini Index.</p>
+</section>
+</section>
+<section id="visualisasi-decision-tree">
+<h1>Visualisasi Decision Tree<a class="headerlink" href="#visualisasi-decision-tree" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">plot_tree</span><span class="p">,</span> <span class="n">export_text</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="c1"># Data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Diameter Buah (cm)&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">22.0</span><span class="p">,</span> <span class="mf">21.5</span><span class="p">,</span> <span class="mf">23.0</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">,</span> <span class="mf">22.5</span><span class="p">,</span> <span class="mf">18.5</span><span class="p">,</span> <span class="mf">19.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">18.0</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">,</span> <span class="mf">23.5</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">,</span> <span class="mf">19.5</span><span class="p">,</span> <span class="mf">21.0</span><span class="p">,</span> <span class="mf">19.0</span><span class="p">],</span>
+    <span class="s2">&quot;Berat Buah (kg)&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">6.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">],</span>
+    <span class="s2">&quot;Kelas&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Citrullus lanatus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus lanatus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus lanatus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus lanatus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus lanatus&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Citrullus amarus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus amarus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus amarus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus amarus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus amarus&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Citrullus lanatus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus lanatus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus amarus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus lanatus&quot;</span><span class="p">,</span> <span class="s2">&quot;Citrullus amarus&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Label Encoding</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Kelas&#39;</span><span class="p">])</span>  <span class="c1"># lanatus=1, amarus=0 (otomatis tergantung le)</span>
+
+<span class="c1"># Fitur dan Target</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Diameter Buah (cm)&quot;</span><span class="p">,</span> <span class="s2">&quot;Berat Buah (kg)&quot;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Label&quot;</span><span class="p">]</span>
+
+<span class="c1"># Train Decision Tree</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;gini&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan Pohon Keputusan</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Pohon Keputusan (Decision Tree) ===&quot;</span><span class="p">)</span>
+<span class="n">tree_rules</span> <span class="o">=</span> <span class="n">export_text</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tree_rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Pohon Keputusan (Decision Tree) ===
+|--- Berat Buah (kg) &lt;= 5.35
+|   |--- class: 0
+|--- Berat Buah (kg) &gt;  5.35
+|   |--- class: 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode diatas melakukan klasifikasi jenis buah semangka menggunakan algoritma Decision Tree. Data diameter dan berat buah dimasukkan dalam bentuk DataFrame. Label kelas buah yang berupa teks diubah menjadi angka menggunakan LabelEncoder. Fitur yang digunakan adalah diameter dan berat buah, sedangkan targetnya adalah label hasil encoding. Model Decision Tree dilatih menggunakan DecisionTreeClassifier dengan kriteria gini dan maksimal kedalaman pohon 3. Setelah model dilatih, struktur pohon keputusan ditampilkan dalam bentuk teks menggunakan export_text().</p>
+</section>
+<section id="visualisasi-splitting">
+<h1>Visualisasi Splitting<a class="headerlink" href="#visualisasi-splitting" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uji 2 Data Baru</span>
+<span class="n">uji_baru</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">19.0</span><span class="p">,</span> <span class="mf">22.8</span><span class="p">],</span>
+    <span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">6.9</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">prediksi</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uji_baru</span><span class="p">)</span>
+<span class="n">hasil</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">prediksi</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Prediksi 2 Data Baru ===&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">uji_baru</span><span class="p">[</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">],</span> <span class="n">uji_baru</span><span class="p">[</span><span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">])):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: Diameter=</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">, Berat=</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> → Prediksi: </span><span class="si">{</span><span class="n">hasil</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi Decision Boundary</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Visualisasi Decision Boundary ===&quot;</span><span class="p">)</span>
+<span class="n">plot_colors</span> <span class="o">=</span> <span class="s2">&quot;ry&quot;</span>
+<span class="n">plot_step</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># lebih kecil biar halus</span>
+
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">))</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()]</span>
+<span class="n">grid_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">grid_df</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="c1"># Plot titik data training</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">plot_colors</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">],</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">([</span><span class="n">label</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Diameter Buah (cm)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Berat Buah (kg)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Decision Boundary (Diameter vs Berat)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Prediksi 2 Data Baru ===
+Data 1: Diameter=19.0, Berat=4.5 → Prediksi: Citrullus amarus
+Data 2: Diameter=22.8, Berat=6.9 → Prediksi: Citrullus lanatus
+
+=== Visualisasi Decision Boundary ===
+</pre></div>
+</div>
+<img alt="_images/14f2d7f20ea1033213474140d820ace333c08b432333eaec740cab21d6bb3498.png" src="_images/14f2d7f20ea1033213474140d820ace333c08b432333eaec740cab21d6bb3498.png" />
+</div>
+</div>
+<p>Kode ini menguji dua data baru dengan model Decision Tree yang telah dilatih, lalu menampilkan hasil prediksinya. Setelah itu, kode membuat visualisasi decision boundary untuk menunjukkan pembagian kelas berdasarkan diameter dan berat buah. Area keputusan digambar dengan contourf(), sedangkan data latih ditampilkan sebagai scatter plot.</p>
+</section>
+<section id="visualisasi-splitting-setelah-ada-2-data-baru">
+<h1>Visualisasi Splitting Setelah ada 2 Data Baru<a class="headerlink" href="#visualisasi-splitting-setelah-ada-2-data-baru" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uji 2 Data Baru</span>
+<span class="n">uji_baru</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">19.0</span><span class="p">,</span> <span class="mf">22.8</span><span class="p">],</span>
+    <span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">6.9</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">prediksi</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uji_baru</span><span class="p">)</span>
+<span class="n">hasil</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">prediksi</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Prediksi 2 Data Baru ===&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">uji_baru</span><span class="p">[</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">],</span> <span class="n">uji_baru</span><span class="p">[</span><span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">])):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: Diameter=</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">, Berat=</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> → Prediksi: </span><span class="si">{</span><span class="n">hasil</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi Decision Boundary</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Visualisasi Decision Boundary ===&quot;</span><span class="p">)</span>
+<span class="n">plot_colors</span> <span class="o">=</span> <span class="s2">&quot;ry&quot;</span>
+<span class="n">plot_step</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># lebih kecil biar halus</span>
+
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">))</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()]</span>
+<span class="n">grid_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">grid_df</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="c1"># Plot titik data training</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">plot_colors</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">],</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">([</span><span class="n">label</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
+
+
+
+<span class="c1"># Plot data uji</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uji_baru</span><span class="p">[</span><span class="s1">&#39;Diameter Buah (cm)&#39;</span><span class="p">],</span> <span class="n">uji_baru</span><span class="p">[</span><span class="s1">&#39;Berat Buah (kg)&#39;</span><span class="p">],</span>
+            <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data Uji&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Diameter Buah (cm)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Berat Buah (kg)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Decision Boundary (Diameter vs Berat)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Prediksi 2 Data Baru ===
+Data 1: Diameter=19.0, Berat=4.5 → Prediksi: Citrullus amarus
+Data 2: Diameter=22.8, Berat=6.9 → Prediksi: Citrullus lanatus
+
+=== Visualisasi Decision Boundary ===
+</pre></div>
+</div>
+<img alt="_images/5e53e67e26729a27b20e2bf14eef0e942005c8e76a05b0069d5171ae1ca46baa.png" src="_images/5e53e67e26729a27b20e2bf14eef0e942005c8e76a05b0069d5171ae1ca46baa.png" />
+</div>
+</div>
+<p>Kode ini menguji dua data baru dan menampilkan hasil prediksinya. Kemudian dibuat visualisasi decision boundary untuk menunjukkan area klasifikasi berdasarkan diameter dan berat buah. Data training divisualisasikan dengan scatter plot berwarna, sedangkan data uji ditandai dengan simbol silang hitam.</p>
+</section>
+<section id="visualisasi-decision-tree-dalam-bentuk-gambar">
+<h1>Visualisasi Decision Tree dalam bentuk gambar<a class="headerlink" href="#visualisasi-decision-tree-dalam-bentuk-gambar" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualisasi Struktur Pohon</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span>
+    <span class="n">clf</span><span class="p">,</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Diameter Buah (cm)&quot;</span><span class="p">,</span> <span class="s2">&quot;Berat Buah (kg)&quot;</span><span class="p">],</span>
+    <span class="n">class_names</span><span class="o">=</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>  <span class="c1"># gunakan label string hasil encoding</span>
+    <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">impurity</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># tampilkan nilai Gini</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Decision Tree untuk Citrullus lanatus vs Citrullus amarus&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1bd878c24cb49478b381b85d6c0634196734e53962f59ea825b5428b2dab9da2.png" src="_images/1bd878c24cb49478b381b85d6c0634196734e53962f59ea825b5428b2dab9da2.png" />
+</div>
+</div>
+<p>Kode ini memvisualisasikan struktur pohon keputusan yang telah dilatih. Fungsi plot_tree() digunakan untuk menampilkan pohon dengan nama fitur dan kelas, dilengkapi warna, bentuk node yang membulat, serta nilai Gini di setiap simpul. Visualisasi ini membantu memahami bagaimana model membuat keputusan berdasarkan fitur diameter dan berat buah.</p>
+</section>
+<section id="rules">
+<h1>Rules<a class="headerlink" href="#rules" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Rules ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RULE 1: Jika Berat Buah &lt;= 5.35 Maka Kelas = Citrullus amarus&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rule 2: Jika Berat Buah &gt; 5.35 Maka Kelas = Citrullus lanatus&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Rules ===
+RULE 1: Jika Berat Buah &lt;= 5.35 Maka Kelas = Citrullus amarus
+Rule 2: Jika Berat Buah &gt; 5.35 Maka Kelas = Citrullus lanatus
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Fuzzy_C_Means.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>FUZZY C-MEANS CLUSTERING</strong></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Decision Tree</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-spesies-tumbuhan"><strong>Data Spesies Tumbuhan</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-berdasarkan-kelas"><strong>Jumlah Data Berdasarkan Kelas:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#urutkan-data-diameter-buah-cm-naik"><strong>Urutkan Data Diameter Buah (cm) (naik):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambil-threshold-split-contoh"><strong>Ambil Threshold Split (contoh):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-entropy-awal-sebelum-split"><strong>Hitung Entropy Awal (sebelum split):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-setelah-split"><strong>Entropy Setelah Split</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-left-20-5">Group Left (≤ 20.5):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-right-20-5">Group Right (&gt; 20.5):</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain-ig"><strong>Information Gain (IG):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-index"><strong>Gini Index</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-awal">Gini Awal:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-left">Gini Left:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-right">Gini Right:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-split">Gini Split:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-untuk-fitur-diameter-buah-cm"><strong>Hasil Akhir untuk fitur Diameter Buah (cm):</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#urutkan-data-berdasarkan-berat-buah-kg"><strong>Urutkan data berdasarkan Berat Buah (kg)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Ambil threshold split (contoh):</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maka">Maka:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komposisi-kelas"><strong>Komposisi kelas:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Entropy setelah split:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-left-5-5-kg">Group Left (≤ 5.5 kg):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-right-5-5-kg">Group Right (&gt; 5.5 kg):</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain"><strong>Information Gain:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Gini Index:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-d">Gini(D):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Gini(Left):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Gini(Right):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Gini Split:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-fitur-berat-buah"><strong>Hasil Akhir Fitur “Berat Buah”</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-perbandingan-dua-fitur"><strong>Kesimpulan Perbandingan Dua Fitur:</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-decision-tree">Visualisasi Decision Tree</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-splitting">Visualisasi Splitting</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-splitting-setelah-ada-2-data-baru">Visualisasi Splitting Setelah ada 2 Data Baru</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-decision-tree-dalam-bentuk-gambar">Visualisasi Decision Tree dalam bentuk gambar</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rules">Rules</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Bilqizah Rahma Ilayya Syahdewi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
