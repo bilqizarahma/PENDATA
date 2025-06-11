@@ -190,6 +190,14 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="UTS_PENDAT.html"><strong>UTS PENAMBANGAN DATA</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="K_Means.html"><strong>Algoritma K-Means Clustering</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fuzzy_C_Means.html"><strong>FUZZY C-MEANS CLUSTERING</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decision_Tree.html"><strong>Decision Tree</strong></a></li>
+
+
+
+
+
+
 </ul>
 
     </div>
@@ -429,7 +437,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pymysql in /usr/local/python/3.12.1/lib/python3.12/site-packages (1.1.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.0.1</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.1.1</span>
 <span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
 </pre></div>
 </div>
@@ -445,7 +453,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: psycopg2-binary in /usr/local/python/3.12.1/lib/python3.12/site-packages (2.9.10)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.0.1</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.1.1</span>
 <span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
 </pre></div>
 </div>
@@ -469,7 +477,7 @@ Requirement already satisfied: tzdata&gt;=2022.7 in /home/codespace/.local/lib/p
 Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.0.1</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.1.1</span>
 <span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
 </pre></div>
 </div>
@@ -529,160 +537,20 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-----+------+-----------------+----------------+---------------+
-|     |   id | Class           |   sepal length |   sepal width |
-|-----+------+-----------------+----------------+---------------|
-|   0 |    2 | Iris-setosa     |            4.9 |           3   |
-|   1 |    3 | Iris-setosa     |            4.7 |           3.2 |
-|   2 |    4 | Iris-setosa     |            4.6 |           3.1 |
-|   3 |    5 | Iris-setosa     |            5   |           3.6 |
-|   4 |    6 | Iris-setosa     |            5.4 |           3.9 |
-|   5 |    7 | Iris-setosa     |            4.6 |           3.4 |
-|   6 |    8 | Iris-setosa     |            5   |           3.4 |
-|   7 |    9 | Iris-setosa     |            4.4 |           2.9 |
-|   8 |   10 | Iris-setosa     |            4.9 |           3.1 |
-|   9 |   11 | Iris-setosa     |            5.4 |           3.7 |
-|  10 |   12 | Iris-setosa     |            4.8 |           3.4 |
-|  11 |   13 | Iris-setosa     |            4.8 |           3   |
-|  12 |   14 | Iris-setosa     |            4.3 |           3   |
-|  13 |   15 | Iris-setosa     |            5.8 |           4   |
-|  14 |   16 | Iris-setosa     |            5.7 |           4.4 |
-|  15 |   17 | Iris-setosa     |            5.4 |           3.9 |
-|  16 |   18 | Iris-setosa     |            5.1 |           3.5 |
-|  17 |   19 | Iris-setosa     |            5.7 |           3.8 |
-|  18 |   20 | Iris-setosa     |            5.1 |           3.8 |
-|  19 |   21 | Iris-setosa     |            5.4 |           3.4 |
-|  20 |   22 | Iris-setosa     |            5.1 |           3.7 |
-|  21 |   23 | Iris-setosa     |            4.6 |           3.6 |
-|  22 |   24 | Iris-setosa     |            5.1 |           3.3 |
-|  23 |   25 | Iris-setosa     |            4.8 |           3.4 |
-|  24 |   26 | Iris-setosa     |            5   |           3   |
-|  25 |   27 | Iris-setosa     |            5   |           3.4 |
-|  26 |   28 | Iris-setosa     |            5.2 |           3.5 |
-|  27 |   29 | Iris-setosa     |            5.2 |           3.4 |
-|  28 |   30 | Iris-setosa     |            4.7 |           3.2 |
-|  29 |   31 | Iris-setosa     |            4.8 |           3.1 |
-|  30 |   32 | Iris-setosa     |            5.4 |           3.4 |
-|  31 |   33 | Iris-setosa     |            5.2 |           4.1 |
-|  32 |   34 | Iris-setosa     |            5.5 |           4.2 |
-|  33 |   35 | Iris-setosa     |            4.9 |           3.1 |
-|  34 |   36 | Iris-setosa     |            5   |           3.2 |
-|  35 |   37 | Iris-setosa     |            5.5 |           3.5 |
-|  36 |   38 | Iris-setosa     |            4.9 |           3.1 |
-|  37 |   39 | Iris-setosa     |            4.4 |           3   |
-|  38 |   40 | Iris-setosa     |            5.1 |           3.4 |
-|  39 |   41 | Iris-setosa     |            5   |           3.5 |
-|  40 |   42 | Iris-setosa     |            4.5 |           2.3 |
-|  41 |   43 | Iris-setosa     |            4.4 |           3.2 |
-|  42 |   44 | Iris-setosa     |            5   |           3.5 |
-|  43 |   45 | Iris-setosa     |            5.1 |           3.8 |
-|  44 |   46 | Iris-setosa     |            4.8 |           3   |
-|  45 |   47 | Iris-setosa     |            5.1 |           3.8 |
-|  46 |   48 | Iris-setosa     |            4.6 |           3.2 |
-|  47 |   49 | Iris-setosa     |            5.3 |           3.7 |
-|  48 |   50 | Iris-setosa     |            5   |           3.3 |
-|  49 |   51 | Iris-versicolor |            7   |           3.2 |
-|  50 |   52 | Iris-versicolor |            6.4 |           3.2 |
-|  51 |   53 | Iris-versicolor |            6.9 |           3.1 |
-|  52 |   54 | Iris-versicolor |            5.5 |           2.3 |
-|  53 |   55 | Iris-versicolor |            6.5 |           2.8 |
-|  54 |   56 | Iris-versicolor |            5.7 |           2.8 |
-|  55 |   57 | Iris-versicolor |            6.3 |           3.3 |
-|  56 |   58 | Iris-versicolor |            4.9 |           2.4 |
-|  57 |   59 | Iris-versicolor |            6.6 |           2.9 |
-|  58 |   60 | Iris-versicolor |            5.2 |           2.7 |
-|  59 |   61 | Iris-versicolor |            5   |           2   |
-|  60 |   62 | Iris-versicolor |            5.9 |           3   |
-|  61 |   63 | Iris-versicolor |            6   |           2.2 |
-|  62 |   64 | Iris-versicolor |            6.1 |           2.9 |
-|  63 |   65 | Iris-versicolor |            5.6 |           2.9 |
-|  64 |   66 | Iris-versicolor |            6.7 |           3.1 |
-|  65 |   67 | Iris-versicolor |            5.6 |           3   |
-|  66 |   68 | Iris-versicolor |            5.8 |           2.7 |
-|  67 |   69 | Iris-versicolor |            6.2 |           2.2 |
-|  68 |   70 | Iris-versicolor |            5.6 |           2.5 |
-|  69 |   71 | Iris-versicolor |            5.9 |           3.2 |
-|  70 |   72 | Iris-versicolor |            6.1 |           2.8 |
-|  71 |   73 | Iris-versicolor |            6.3 |           2.5 |
-|  72 |   74 | Iris-versicolor |            6.1 |           2.8 |
-|  73 |   75 | Iris-versicolor |            6.4 |           2.9 |
-|  74 |   76 | Iris-versicolor |            6.6 |           3   |
-|  75 |   77 | Iris-versicolor |            6.8 |           2.8 |
-|  76 |   78 | Iris-versicolor |            6.7 |           3   |
-|  77 |   79 | Iris-versicolor |            6   |           2.9 |
-|  78 |   80 | Iris-versicolor |            5.7 |           2.6 |
-|  79 |   81 | Iris-versicolor |            5.5 |           2.4 |
-|  80 |   82 | Iris-versicolor |            5.5 |           2.4 |
-|  81 |   83 | Iris-versicolor |            5.8 |           2.7 |
-|  82 |   84 | Iris-versicolor |            6   |           2.7 |
-|  83 |   85 | Iris-versicolor |            5.4 |           3   |
-|  84 |   86 | Iris-versicolor |            6   |           3.4 |
-|  85 |   87 | Iris-versicolor |            6.7 |           3.1 |
-|  86 |   88 | Iris-versicolor |            6.3 |           2.3 |
-|  87 |   89 | Iris-versicolor |            5.6 |           3   |
-|  88 |   90 | Iris-versicolor |            5.5 |           2.5 |
-|  89 |   91 | Iris-versicolor |            5.5 |           2.6 |
-|  90 |   92 | Iris-versicolor |            6.1 |           3   |
-|  91 |   93 | Iris-versicolor |            5.8 |           2.6 |
-|  92 |   94 | Iris-versicolor |            5   |           2.3 |
-|  93 |   95 | Iris-versicolor |            5.6 |           2.7 |
-|  94 |   96 | Iris-versicolor |            5.7 |           3   |
-|  95 |   97 | Iris-versicolor |            5.7 |           2.9 |
-|  96 |   98 | Iris-versicolor |            6.2 |           2.9 |
-|  97 |   99 | Iris-versicolor |            5.1 |           2.5 |
-|  98 |  100 | Iris-versicolor |            5.7 |           2.8 |
-|  99 |  101 | Iris-virginica  |            6.3 |           3.3 |
-| 100 |  102 | Iris-virginica  |            5.8 |           2.7 |
-| 101 |  103 | Iris-virginica  |            7.1 |           3   |
-| 102 |  104 | Iris-virginica  |            6.3 |           2.9 |
-| 103 |  105 | Iris-virginica  |            6.5 |           3   |
-| 104 |  106 | Iris-virginica  |            7.6 |           3   |
-| 105 |  107 | Iris-virginica  |            4.9 |           2.5 |
-| 106 |  108 | Iris-virginica  |            7.3 |           2.9 |
-| 107 |  109 | Iris-virginica  |            6.7 |           2.5 |
-| 108 |  110 | Iris-virginica  |            7.2 |           3.6 |
-| 109 |  111 | Iris-virginica  |            6.5 |           3.2 |
-| 110 |  112 | Iris-virginica  |            6.4 |           2.7 |
-| 111 |  113 | Iris-virginica  |            6.8 |           3   |
-| 112 |  114 | Iris-virginica  |            5.7 |           2.5 |
-| 113 |  115 | Iris-virginica  |            5.8 |           2.8 |
-| 114 |  116 | Iris-virginica  |            6.4 |           3.2 |
-| 115 |  117 | Iris-virginica  |            6.5 |           3   |
-| 116 |  118 | Iris-virginica  |            7.7 |           3.8 |
-| 117 |  119 | Iris-virginica  |            7.7 |           2.6 |
-| 118 |  120 | Iris-virginica  |            6   |           2.2 |
-| 119 |  121 | Iris-virginica  |            6.9 |           3.2 |
-| 120 |  122 | Iris-virginica  |            5.6 |           2.8 |
-| 121 |  123 | Iris-virginica  |            7.7 |           2.8 |
-| 122 |  124 | Iris-virginica  |            6.3 |           2.7 |
-| 123 |  125 | Iris-virginica  |            6.7 |           3.3 |
-| 124 |  126 | Iris-virginica  |            7.2 |           3.2 |
-| 125 |  127 | Iris-virginica  |            6.2 |           2.8 |
-| 126 |  128 | Iris-virginica  |            6.1 |           3   |
-| 127 |  129 | Iris-virginica  |            6.4 |           2.8 |
-| 128 |  130 | Iris-virginica  |            7.2 |           3   |
-| 129 |  131 | Iris-virginica  |            7.4 |           2.8 |
-| 130 |  132 | Iris-virginica  |            7.9 |           3.8 |
-| 131 |  133 | Iris-virginica  |            6.4 |           2.8 |
-| 132 |  134 | Iris-virginica  |            6.3 |           2.8 |
-| 133 |  135 | Iris-virginica  |            6.1 |           2.6 |
-| 134 |  136 | Iris-virginica  |            7.7 |           3   |
-| 135 |  137 | Iris-virginica  |            6.3 |           3.4 |
-| 136 |  138 | Iris-virginica  |            6.4 |           3.1 |
-| 137 |  139 | Iris-virginica  |            6   |           3   |
-| 138 |  140 | Iris-virginica  |            6.9 |           3.1 |
-| 139 |  141 | Iris-virginica  |            6.7 |           3.1 |
-| 140 |  142 | Iris-virginica  |            6.9 |           3.1 |
-| 141 |  143 | Iris-virginica  |            5.8 |           2.7 |
-| 142 |  144 | Iris-virginica  |            6.8 |           3.2 |
-| 143 |  145 | Iris-virginica  |            6.7 |           3.3 |
-| 144 |  146 | Iris-virginica  |            6.7 |           3   |
-| 145 |  147 | Iris-virginica  |            6.3 |           2.5 |
-| 146 |  148 | Iris-virginica  |            6.5 |           3   |
-| 147 |  149 | Iris-virginica  |            6.2 |           3.4 |
-| 148 |  150 | Iris-virginica  |            5.9 |           3   |
-| 149 |    1 | Iris-setosa     |           20.1 |          30.5 |
-+-----+------+-----------------+----------------+---------------+
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: could not translate host name &quot;posgesqlpendata23-175-posgresqlpendata23-175.h.aivencloud.com&quot; to address: Name or service not known
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">40</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span>     <span class="c1"># Menutup koneksi</span>
+<span class="ne">---&gt; </span><span class="mi">40</span>     <span class="k">if</span> <span class="n">cur</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>         <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="k">if</span> <span class="n">conn</span><span class="p">:</span>
+
+<span class="ne">NameError</span>: name &#39;cur&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -749,7 +617,7 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+----------------+----------------+---------------+
 | id   | class          | petal length   | petal width   |
 |------+----------------+----------------+---------------|
-| 1    | Iris-setosa    | 80.4           | 70.0          |
+| 1    | Iris-setosa    | 1.4            | 0.2           |
 | 2    | Iris-setosa    | 1.4            | 0.2           |
 | 3    | Iris-setosa    | 1.3            | 0.2           |
 | ...  | ...            | ...            | ...           |
@@ -857,13 +725,13 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+----------------+----------------+---------------+----------------+---------------+
 | id   | class          | sepal length   | sepal width   | petal length   | petal width   |
 |------+----------------+----------------+---------------+----------------+---------------|
+| 1    | Iris-setosa    | 5.1            | 3.5           | 1.4            | 0.2           |
 | 2    | Iris-setosa    | 4.9            | 3.0           | 1.4            | 0.2           |
 | 3    | Iris-setosa    | 4.7            | 3.2           | 1.3            | 0.2           |
-| 4    | Iris-setosa    | 4.6            | 3.1           | 1.5            | 0.2           |
 | ...  | ...            | ...            | ...           | ...            | ...           |
+| 148  | Iris-virginica | 6.5            | 3.0           | 5.2            | 2.0           |
 | 149  | Iris-virginica | 6.2            | 3.4           | 5.4            | 2.3           |
 | 150  | Iris-virginica | 5.9            | 3.0           | 5.1            | 1.8           |
-| 1    | Iris-setosa    | 20.1           | 30.5          | 80.4           | 70.0          |
 +------+----------------+----------------+---------------+----------------+---------------+
 </pre></div>
 </div>
@@ -928,7 +796,7 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/def1b07bccc98b8814083e44f68735e21c362b4638b5764382fa53576720b312.png" src="_images/def1b07bccc98b8814083e44f68735e21c362b4638b5764382fa53576720b312.png" />
+<img alt="_images/7f302405628118c02c8224d71c25f3a150a036b7e55c0282b8a017dd40fea703.png" src="_images/7f302405628118c02c8224d71c25f3a150a036b7e55c0282b8a017dd40fea703.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -977,7 +845,7 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/392c332b1647f67276f8fa87ce3fcbbe69cd222851f122ed47e93a230d43fb2a.png" src="_images/392c332b1647f67276f8fa87ce3fcbbe69cd222851f122ed47e93a230d43fb2a.png" />
+<img alt="_images/dc46f791c49056f5ac253c64280de39e74875cec3a4e7036afd5e384f0fc6aa1.png" src="_images/dc46f791c49056f5ac253c64280de39e74875cec3a4e7036afd5e384f0fc6aa1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1026,7 +894,7 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b67d989a0bcfd4a3e91694779486487533d2a2134e8e9bb3bee1586b5221cdc0.png" src="_images/b67d989a0bcfd4a3e91694779486487533d2a2134e8e9bb3bee1586b5221cdc0.png" />
+<img alt="_images/20cd139570b36b91f0fad73a2c7d2fff00841686b5ac95ce9a47ae77e80a9fcf.png" src="_images/20cd139570b36b91f0fad73a2c7d2fff00841686b5ac95ce9a47ae77e80a9fcf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1075,7 +943,7 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6e437b75ab0cd93ef06b776d07fb2b60e9588e277eafacc8a3700ff59e7a1ec8.png" src="_images/6e437b75ab0cd93ef06b776d07fb2b60e9588e277eafacc8a3700ff59e7a1ec8.png" />
+<img alt="_images/6c64aa609beae0ebfd43e853afeb6549369399eceb01f6e958a6f80536c87199.png" src="_images/6c64aa609beae0ebfd43e853afeb6549369399eceb01f6e958a6f80536c87199.png" />
 </div>
 </div>
 </section>
@@ -1122,7 +990,7 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/90406e5fb0bb686147957f77a5f6dc250d1cc096df019913e5c56e15369e0d09.png" src="_images/90406e5fb0bb686147957f77a5f6dc250d1cc096df019913e5c56e15369e0d09.png" />
+<img alt="_images/aa792c52df87dc0316c6422376e8f8de80e99ac8d7b2d29c86ad5525b359b784.png" src="_images/aa792c52df87dc0316c6422376e8f8de80e99ac8d7b2d29c86ad5525b359b784.png" />
 </div>
 </div>
 </section>
