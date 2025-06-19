@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FUZZY C-MEANS CLUSTERING &#8212; Penambangan Data</title>
+    <title>Fuzzy C-Means Clustering &#8212; Penambangan Data</title>
   
   
   
@@ -190,9 +190,11 @@
 
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="UTS_PENDAT.html"><strong>UTS PENAMBANGAN DATA</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS_PENDAT.html"><strong>Ujian Tengah Semester</strong></a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="K_Means.html"><strong>Algoritma K-Means Clustering</strong></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>FUZZY C-MEANS CLUSTERING</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Fuzzy C-Means Clustering</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Decision_Tree.html"><strong>Decision Tree</strong></a></li>
 
 
@@ -201,9 +203,6 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="Yapping_Binnings.html"><strong>Teknik Binning</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tugas_PRA_Uas.html"><strong>Prediksi Risiko Diabetes Berdasarkan CDC Diabetes Health Indicators</strong></a></li>
-
-
 </ul>
 
     </div>
@@ -386,7 +385,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>FUZZY C-MEANS CLUSTERING</h1>
+    <h1>Fuzzy C-Means Clustering</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -447,7 +446,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="fuzzy-c-means-clustering">
-<h1><strong>FUZZY C-MEANS CLUSTERING</strong><a class="headerlink" href="#fuzzy-c-means-clustering" title="Link to this heading">#</a></h1>
+<h1><strong>Fuzzy C-Means Clustering</strong><a class="headerlink" href="#fuzzy-c-means-clustering" title="Link to this heading">#</a></h1>
 <p>Fuzzy C-Means (FCM) adalah salah satu metode <em>clustering</em> atau pengelompokan data yang menggunakan pendekatan <em>fuzzy</em> atau kabur. Berbeda dengan algoritma K-Means yang bersifat <em>hard clustering</em>, di mana setiap data hanya bisa masuk ke satu klaster, FCM memungkinkan satu data menjadi anggota dari beberapa klaster sekaligus dengan tingkat keanggotaan tertentu. Nilai keanggotaan ini berada dalam rentang 0 hingga 1, sehingga metode ini lebih fleksibel dan cocok untuk data yang memiliki karakteristik campuran.</p>
 <p>Proses kerja FCM dimulai dengan menentukan jumlah klaster yang diinginkan dan parameter <em>fuzziness</em> (biasanya bernilai 2). Selanjutnya, algoritma menginisialisasi matriks keanggotaan secara acak untuk setiap data terhadap semua klaster. Kemudian, pusat klaster dihitung berdasarkan nilai-nilai keanggotaan tersebut. Setelah itu, nilai keanggotaan diperbarui berdasarkan jarak antara data dan pusat klaster. Langkah ini diulang secara iteratif hingga perubahan nilai keanggotaan sangat kecil atau konvergen.</p>
 <p>Tujuan utama dari FCM adalah untuk meminimalkan fungsi objektif yang mempertimbangkan jarak antara data dan pusat klaster, dikalikan dengan derajat keanggotaan yang dipangkatkan dengan parameter fuzziness. Hasil akhir dari FCM bukan hanya pusat-pusat klaster, tetapi juga matriks keanggotaan yang menunjukkan sejauh mana tiap data tergolong dalam setiap klaster.</p>
